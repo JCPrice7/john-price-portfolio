@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!--
+  ════════════════════════════════════════════════════════
+  HOW TO USE THIS TEMPLATE
+  ════════════════════════════════════════════════════════
+
+  1. COPY this file into the /projects/ folder
+     Name it something like: tipsy.html, jukebox.html, etc.
+
+  2. FIND & REPLACE the placeholder text:
+     - [PROJECT TITLE]     → e.g. "Tipsy"
+     - [SECTION]           → e.g. "Engineering Projects"
+     - [TAG]               → e.g. "Robotics" or "Electronics"
+     - [YEAR]              → e.g. "2025"
+     - [ROLE]              → e.g. "Solo Build" or "Engineering Lead"
+     - [STATUS]            → e.g. "In Progress" or "Completed"
+     - [PREV PROJECT]      → title of the previous project
+     - [PREV FILE]         → filename of the previous project, e.g. jukebox.html
+     - [NEXT PROJECT]      → title of the next project
+     - [NEXT FILE]         → filename of the next project
+
+  3. IMAGES — replace every <div class="img-placeholder"> with a real <img> tag:
+     Before: <div class="img-placeholder">Cover image</div>
+     After:  <img src="../images/tipsy-cover.jpg" alt="Tipsy robot cover">
+
+     Store all images in a /images/ folder at the root of the project.
+     Recommended sizes:
+       - Cover (hero left panel):  900×600px or wider
+       - Detail thumbnails:        600×400px
+       - Full-width body image:    1200×700px
+       - Side-by-side pair:        700×500px each
+
+  4. CONTENT — fill in the three prose sections:
+     - Overview: what the project is and why you built it
+     - Process:  how you approached it, key decisions, challenges
+     - Outcome:  results, what you learned, what you'd do differently
+
+  5. SIDEBAR — fill in Technologies, Context, and any links
+
+  6. Add the link in index.html if not already there.
+
+  That's it. Duplicate → fill in → done.
+  ════════════════════════════════════════════════════════
+  -->
+
+  <title>[PROJECT TITLE] — John Price</title>
+  <link rel="stylesheet" href="../shared.css" />
+  <style>
+    /* ── Hero ─────────────────────────────────────────── */
+    .project-hero {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 56px;
+      align-items: end;
+      padding: 64px 48px 52px;
+      border-bottom: 1px solid var(--border);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero-tag {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--purple);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .hero-line {
+      width: 32px;
+      height: 1px;
+      background: var(--purple);
+      margin-bottom: 20px;
+    }
+
+    .project-title {
+      font-family: var(--serif);
+      font-size: clamp(38px, 5vw, 58px);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .project-subtitle {
+      font-size: 14px;
+      color: var(--text2);
+      line-height: 1.75;
+      max-width: 440px;
+    }
+
+    .meta-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .meta-item {
+      border-top: 1px solid var(--border);
+      padding: 14px 0;
+    }
+
+    .meta-item:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .meta-label {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+
+    .meta-value {
+      font-size: 13px;
+      color: var(--text2);
+    }
+
+    .meta-value.accent { color: var(--purple); }
+
+    /* ── Cover image area ─────────────────────────────── */
+    .cover-area {
+      height: 400px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .cover-main {
+      background: var(--bg2);
+      border-right: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .cover-side {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+    }
+
+    .cover-thumb {
+      background: var(--bg3);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .cover-thumb:last-child {
+      border-bottom: none;
+    }
+
+    /* ── Body ─────────────────────────────────────────── */
+    .project-body {
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 72px;
+      padding: 60px 48px 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    .project-content { }
+
+    .content-section {
+      margin-bottom: 52px;
+    }
+
+    .content-section .section-label {
+      display: block;
+      margin-bottom: 18px;
+    }
+
+    .prose {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--text2);
+    }
+
+    /* Images inside body content */
+    .img-full {
+      width: 100%;
+      height: 280px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      overflow: hidden;
+      margin: 28px 0 10px;
+    }
+
+    .img-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 28px 0 10px;
+    }
+
+    .img-pair .img-half {
+      height: 200px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .img-caption {
+      font-size: 11px;
+      color: var(--text3);
+      letter-spacing: 0.04em;
+      margin-bottom: 28px;
+    }
+
+    /* Three images in a row */
+    .img-trio {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin: 28px 0 10px;
+    }
+
+    .img-trio .img-third {
+      height: 160px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    /* ── Sidebar ──────────────────────────────────────── */
+    .project-sidebar {
+      position: sticky;
+      top: 88px;
+    }
+
+    .sidebar-section {
+      border-top: 1px solid var(--border);
+      padding: 20px 0;
+    }
+
+    .sidebar-label {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text3);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .sidebar-text {
+      font-size: 13px;
+      color: var(--text2);
+      line-height: 1.7;
+    }
+
+    .sidebar-link {
+      display: block;
+      font-size: 13px;
+      color: var(--purple);
+      margin-bottom: 8px;
+      transition: opacity 0.2s;
+    }
+
+    .sidebar-link:hover { opacity: 0.7; }
+
+    .tags-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    /* ── Prev / Next nav ──────────────────────────────── */
+    .project-nav {
+      padding: 32px 48px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .project-nav a {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text3);
+      transition: color 0.2s;
+    }
+
+    .project-nav a:hover { color: var(--purple); }
+
+    .project-nav .arrow { color: var(--purple); }
+
+    /* ── Responsive ───────────────────────────────────── */
+    @media (max-width: 768px) {
+      .project-hero  { grid-template-columns: 1fr; padding: 40px 24px 36px; gap: 32px; }
+      .cover-area    { height: 260px; grid-template-columns: 1fr; }
+      .cover-side    { display: none; }
+      .project-body  { grid-template-columns: 1fr; padding: 40px 24px 60px; gap: 40px; }
+      .project-sidebar { position: static; }
+      .img-pair      { grid-template-columns: 1fr; }
+      .img-trio      { grid-template-columns: 1fr 1fr; }
+      .project-nav   { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">John Price</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#engineering">Work</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="mailto:price423@purdue.edu">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── Hero ─────────────────────────────────────────── -->
+  <div class="project-hero fade-up">
+    <div>
+      <p class="hero-tag">[SECTION] — [TAG]</p>
+      <div class="hero-line"></div>
+      <h1 class="project-title">[PROJECT TITLE]</h1>
+      <p class="project-subtitle">
+        One or two sentences summarizing what this project is. Keep it punchy — the detail comes in the body below.
+      </p>
+    </div>
+    <div class="meta-list">
+      <div class="meta-item">
+        <p class="meta-label">Year</p>
+        <p class="meta-value">[YEAR]</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Role</p>
+        <p class="meta-value">[ROLE]</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Status</p>
+        <p class="meta-value accent">[STATUS]</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Cover images ──────────────────────────────────── -->
+  <!--
+    Replace the img-placeholder divs with real <img> tags.
+    Example:
+      <img src="../images/tipsy-cover.jpg" alt="Tipsy robot">
+  -->
+  <div class="cover-area">
+    <div class="cover-main">
+      <div class="img-placeholder">Main cover image — recommended 900×600px</div>
+    </div>
+    <div class="cover-side">
+      <div class="cover-thumb">
+        <div class="img-placeholder">Detail 1</div>
+      </div>
+      <div class="cover-thumb">
+        <div class="img-placeholder">Detail 2</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Body ──────────────────────────────────────────── -->
+  <div class="project-body">
+    <div class="project-content">
+
+      <!-- OVERVIEW ─────────────────────────────────────── -->
+      <div class="content-section fade-up">
+        <span class="section-label">Overview</span>
+        <p class="prose">
+          Write 1–3 paragraphs about what this project is and why you built it. What problem were you solving? What was the scope? What drew you to it?
+        </p>
+
+        <!-- Full-width image with caption -->
+        <div class="img-full">
+          <!-- <img src="../images/[project]-overview.jpg" alt="Overview image"> -->
+          <div class="img-placeholder">Full-width image — recommended 1200×700px</div>
+        </div>
+        <p class="img-caption">Caption describing what this image shows.</p>
+      </div>
+
+      <!-- PROCESS ──────────────────────────────────────── -->
+      <div class="content-section fade-up">
+        <span class="section-label">Process</span>
+        <p class="prose">
+          Describe how you approached the project — your methodology, key design decisions, fabrication steps, or engineering challenges. This section shows how you think, not just what you built.
+        </p>
+
+        <!-- Side-by-side image pair -->
+        <div class="img-pair">
+          <div class="img-half">
+            <!-- <img src="../images/[project]-process-1.jpg" alt="Process step 1"> -->
+            <div class="img-placeholder">Process image 1</div>
+          </div>
+          <div class="img-half">
+            <!-- <img src="../images/[project]-process-2.jpg" alt="Process step 2"> -->
+            <div class="img-placeholder">Process image 2</div>
+          </div>
+        </div>
+        <p class="img-caption">Caption for the pair above.</p>
+
+        <p class="prose" style="margin-top: 24px;">
+          Continue the process narrative here if needed. You can add as many image blocks and prose paragraphs as the project warrants — just copy the patterns above.
+        </p>
+
+        <!--
+          OPTIONAL: Three images in a row (good for detail shots)
+          <div class="img-trio">
+            <div class="img-third"><img src="../images/detail-1.jpg" alt=""></div>
+            <div class="img-third"><img src="../images/detail-2.jpg" alt=""></div>
+            <div class="img-third"><img src="../images/detail-3.jpg" alt=""></div>
+          </div>
+          <p class="img-caption">Three detail shots.</p>
+        -->
+      </div>
+
+      <!-- OUTCOME ──────────────────────────────────────── -->
+      <div class="content-section fade-up">
+        <span class="section-label">Outcome</span>
+        <p class="prose">
+          What was the result? What did it teach you? What would you do differently? This closes the narrative arc of the project — be specific and honest.
+        </p>
+
+        <!-- Optional final image -->
+        <div class="img-full">
+          <!-- <img src="../images/[project]-outcome.jpg" alt="Final result"> -->
+          <div class="img-placeholder">Final result image</div>
+        </div>
+        <p class="img-caption">Caption for the final image.</p>
+      </div>
+
+    </div>
+
+    <!-- ── Sidebar ────────────────────────────────────── -->
+    <aside class="project-sidebar">
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">Technologies & Tools</p>
+        <!--
+          Replace these tags with the actual tools/materials used.
+          Add or remove <span class="tag"> items as needed.
+        -->
+        <div class="tags-wrap">
+          <span class="tag">Tool A</span>
+          <span class="tag">Tool B</span>
+          <span class="tag">Material C</span>
+          <span class="tag">Software D</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">Context</p>
+        <p class="sidebar-text">
+          Any relevant context — course, team size, time frame, client, or constraints.
+        </p>
+      </div>
+
+      <!--
+        OPTIONAL: Links section — delete this block if no links
+      -->
+      <div class="sidebar-section">
+        <p class="sidebar-label">Links</p>
+        <a href="#" class="sidebar-link">GitHub repo →</a>
+        <a href="#" class="sidebar-link">Live demo →</a>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- ── Prev / Next navigation ────────────────────────── -->
+  <div class="project-nav">
+    <a href="[PREV FILE]"><span class="arrow">←</span> [PREV PROJECT]</a>
+    <a href="[NEXT FILE]">[NEXT PROJECT] <span class="arrow">→</span></a>
+  </div>
+
+  <footer>
+    <span class="footer-copy">© 2026 John Price</span>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/johnprice7/" target="_blank">LinkedIn</a>
+      <a href="mailto:price423@purdue.edu">Email</a>
+    </div>
+  </footer>
+
+</body>
+</html>

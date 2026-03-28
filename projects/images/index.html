@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>John Price</title>
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    /* ── Hero ───────────────────────────────────────────── */
+    .hero {
+      padding: 88px 48px 72px;
+      border-bottom: 1px solid var(--border);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(52px, 8vw, 84px);
+      font-weight: 300;
+      line-height: 1.0;
+      color: var(--text);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--purple);
+    }
+
+    .hero-role {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 40px;
+    }
+
+    .hero-divider {
+      width: 40px;
+      height: 1px;
+      background: var(--purple);
+      margin-bottom: 28px;
+    }
+
+    .hero-bio {
+      font-size: 15px;
+      line-height: 1.85;
+      color: var(--text2);
+      max-width: 560px;
+    }
+
+    /* ── Project sections ───────────────────────────────── */
+    .projects-section {
+      padding: 56px 48px;
+      border-bottom: 1px solid var(--border);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 32px;
+    }
+
+    .section-count {
+      font-size: 11px;
+      color: var(--text3);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── Project grid ───────────────────────────────────── */
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .project-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.25s, transform 0.2s;
+      display: block;
+    }
+
+    .project-card:hover {
+      border-color: var(--purple-border);
+      transform: translateY(-2px);
+    }
+
+    .card-image {
+      height: 180px;
+      overflow: hidden;
+      background: var(--bg3);
+    }
+
+    .card-image img {
+      transition: transform 0.4s ease;
+    }
+
+    .project-card:hover .card-image img {
+      transform: scale(1.03);
+    }
+
+    .card-body {
+      padding: 18px 20px 20px;
+    }
+
+    .card-tag {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .card-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--text);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: var(--text2);
+      line-height: 1.6;
+    }
+
+    /* Featured card spans full width */
+    .project-card.featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 2fr 3fr;
+    }
+
+    .project-card.featured .card-image {
+      height: 100%;
+      min-height: 200px;
+    }
+
+    .project-card.featured .card-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 32px 36px;
+    }
+
+    .project-card.featured .card-title {
+      font-size: 30px;
+    }
+
+    /* Gallery card — for image-heavy projects like LEGO */
+    .project-card.gallery .card-image {
+      height: 220px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 2px;
+    }
+
+    .project-card.gallery .card-image .img-cell {
+      background: var(--bg3);
+      overflow: hidden;
+    }
+
+    .project-card.gallery .card-image .img-cell img {
+      transition: transform 0.4s ease;
+    }
+
+    .project-card:hover.gallery .card-image .img-cell img {
+      transform: scale(1.04);
+    }
+
+    /* ── About section ──────────────────────────────────── */
+    .about-section {
+      padding: 56px 48px;
+      border-bottom: 1px solid var(--border);
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .about-text {
+      font-size: 14px;
+      line-height: 1.9;
+      color: var(--text2);
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    /* ── Responsive ─────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .hero { padding: 56px 24px 48px; }
+      .projects-section { padding: 40px 24px; }
+      .project-grid { grid-template-columns: 1fr; }
+      .project-card.featured { grid-template-columns: 1fr; }
+      .project-card.featured .card-image { height: 200px; }
+      .about-section { padding: 40px 24px; grid-template-columns: 1fr; gap: 36px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">John Price</a>
+    <ul class="nav-links">
+      <li><a href="#engineering" class="active">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="mailto:price423@purdue.edu">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── Hero ─────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="fade-up">
+      <h1 class="hero-name">John<br><em>Price</em></h1>
+    </div>
+    <div class="fade-up">
+      <p class="hero-role">Materials Engineering · Purdue University · Co-op @ Howmet Aerospace</p>
+    </div>
+    <div class="fade-up">
+      <div class="hero-divider"></div>
+      <p class="hero-bio">
+        I'm obsessed with how small changes — in composition, process, or design — create outsized differences in performance. From superalloy castings to robots to racing karts, I build things that push the limits of materials.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Engineering Projects ──────────────────────────── -->
+  <section class="projects-section" id="engineering">
+    <div class="section-header">
+      <span class="section-label">Engineering Projects</span>
+      <span class="section-count">05 projects</span>
+    </div>
+
+    <div class="project-grid">
+
+      <!-- FEATURED: Tipsy -->
+      <a href="projects/tipsy.html" class="project-card featured fade-up">
+        <div class="card-image">
+          <img src="../images/tipsy-cover.jpeg" alt="Tipsy robot">
+        </div>
+        <div class="card-body">
+          <div class="card-tag">Featured · Robotics</div>
+          <h2 class="card-title">Tipsy</h2>
+          <p class="card-desc">A custom quadruped robot project — designing, building, and programming a four-legged walking machine from the ground up.</p>
+        </div>
+      </a>
+
+      <!-- Jukebox -->
+      <a href="projects/jukebox.html" class="project-card fade-up">
+        <div class="card-image">
+          <!--       <img src="../images/jukebox-cover.jpg" alt="Jukebox project"> -->
+          <div class="img-placeholder">Cover image</div>
+        </div>
+        <div class="card-body">
+          <div class="card-tag">Electronics</div>
+          <h2 class="card-title">Jukebox Project</h2>
+          <p class="card-desc">A custom-built jukebox combining hardware design, embedded electronics, and a custom enclosure.</p>
+        </div>
+      </a>
+
+      <!-- Eagle Project -->
+      <a href="projects/eagle-project.html" class="project-card fade-up">
+        <div class="card-image">
+          <!-- <img src="../images/eagle-cover.jpg" alt="Eagle Project"> -->
+          <div class="img-placeholder">Cover image</div>
+        </div>
+        <div class="card-body">
+          <div class="card-tag">Leadership · Construction</div>
+          <h2 class="card-title">Eagle Project</h2>
+          <p class="card-desc">A community-focused Eagle Scout project — planning, organizing, and leading a team to completion.</p>
+        </div>
+      </a>
+
+      <!-- Racing Sim -->
+      <a href="projects/racing-sim.html" class="project-card fade-up">
+        <div class="card-image">
+          <img src="../images/sim-cover.jpeg" alt="Racing Sim">
+        </div>
+        <div class="card-body">
+          <div class="card-tag">Hardware · Design</div>
+          <h2 class="card-title">Racing Sim</h2>
+          <p class="card-desc">A custom racing simulator rig - bespoke folding frame, 15Nm wheel base, and pedals created from scratch.</p>
+        </div>
+      </a>
+
+      <!-- Kart Bumper Brackets -->
+      <a href="projects/kart-brackets.html" class="project-card fade-up" style="grid-column: 1 / -1; grid-template-columns: 1fr 4fr; display: grid;">
+        <div class="card-image" style="min-height: 140px;">
+          <!-- <img src="../images/brackets-cover.jpg" alt="Kart Brackets"> -->
+          <div class="img-placeholder">Cover image</div>
+        </div>
+        <div class="card-body" style="display:flex; flex-direction:column; justify-content:center; padding: 24px 32px;">
+          <div class="card-tag">Purdue Grand Prix · Fabrication</div>
+          <h2 class="card-title">Go Kart Bumper Brackets</h2>
+          <p class="card-desc">Designed and fabricated custom bumper brackets for the Honors College Racing Club kart, balancing weight, strength, and ease of replacement.</p>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ── Design Work ────────────────────────────────────── -->
+  <section class="projects-section" id="design">
+    <div class="section-header">
+      <span class="section-label">Design Work</span>
+      <span class="section-count">02 projects</span>
+    </div>
+
+    <div class="project-grid">
+
+      <!-- Assignment Tracker -->
+      <a href="projects/assignment-tracker.html" class="project-card fade-up">
+        <div class="card-image">
+          <!-- <img src="../images/tracker-cover.jpg" alt="Assignment Tracker"> -->
+          <div class="img-placeholder">Cover image</div>
+        </div>
+        <div class="card-body">
+          <div class="card-tag">Web · React</div>
+          <h2 class="card-title">Assignment Tracker</h2>
+          <p class="card-desc">A React web app for tracking assignments and deadlines - built from scratch and deployed on Vercel.</p>
+        </div>
+      </a>
+
+      <!-- LEGO Cars — gallery style -->
+      <a href="projects/lego-cars.html" class="project-card gallery fade-up">
+        <div class="card-image">
+          <!-- Replace these with real thumbnails -->
+          <img src="../images/camaro-cover.jpeg" alt="Camaro">
+          <img src="../images/f40-cover.jpeg" alt="F40">
+          <img src="../images/truck-cover.jpeg" alt="Truck">
+          <img src="../images/rx7-cover.jpeg" alt="RX-7">
+          <img src="../images/red-car-cover.jpeg" alt="Red Car">
+          <img src="../images/white-car-cover.jpeg" alt="White Car">
+        </div>
+        <div class="card-body">
+          <div class="card-tag">Gallery · LEGO</div>
+          <h2 class="card-title">LEGO Cars</h2>
+          <p class="card-desc">An ongoing collection of custom LEGO car builds — detailed models with a focus on accurate proportions and creative part usage.</p>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ── About ──────────────────────────────────────────── -->
+  <section class="about-section" id="about">
+    <div>
+      <p class="section-label" style="margin-bottom: 20px;">About</p>
+      <p class="about-text">
+        I'm a Materials Engineering sophomore at Purdue, with a growing obsession for how small changes — in composition, process, or design — create outsized differences in performance. On campus I split my time between robotics, racing, and research: treasurer for Robot in 3 Days, Engineering Lead for the Honors College Racing Club, and working in the Hypersonic Materials Lab on additive manufacturing of ceramic composites.
+        <br><br>
+        I also work as a Process Engineer co-op at Howmet Aerospace with superalloy castings, where I've seen firsthand how small process changes make real differences in quality — exactly the kind of materials-to-application connection I came to Purdue for.
+        <br><br>
+        When I'm not in the lab or shop, I'm rock climbing, playing frisbee, or chasing the next thing I want to build.
+      </p>
+    </div>
+    <div>
+      <p class="section-label" style="margin-bottom: 20px;">Skills & Tools</p>
+      <div class="skills-grid">
+        <span class="tag">3D Modeling</span>
+        <span class="tag">3D Printing</span>
+        <span class="tag">Team Leadership</span>
+        <span class="tag">Mentoring</span>
+        <span class="tag">Project Management</span>
+        <span class="tag">Microelectronics</span>
+        <span class="tag">Fabrication</span>
+        <span class="tag">CAD</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-copy">© 2026 John Price</span>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/johnprice7/" target="_blank">LinkedIn</a>
+      <a href="mailto:jcprice2024@gmail.com">Email</a>
+    </div>
+  </footer>
+
+</body>
+</html>
