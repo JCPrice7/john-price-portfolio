@@ -319,7 +319,7 @@
     <ul class="nav-links">
       <li><a href="../index.html#engineering">Work</a></li>
       <li><a href="../index.html#about">About</a></li>
-      <li><a href="mailto:price423@purdue.edu">Contact</a></li>
+      <li><a href="mailto:jcprice2024@gmail.com">Contact</a></li>
     </ul>
   </nav>
 
@@ -339,12 +339,8 @@
         <p class="meta-value">2026</p>
       </div>
       <div class="meta-item">
-        <p class="meta-label">Role</p>
-        <p class="meta-value">[ROLE]</p>
-      </div>
-      <div class="meta-item">
         <p class="meta-label">Status</p>
-        <p class="meta-value accent">[STATUS]</p>
+        <p class="meta-value accent">Complete</p>
       </div>
     </div>
   </div>
@@ -358,13 +354,16 @@
   <div class="cover-area">
     <div class="cover-main">
       <div class="../images/tipsy-main1.jpg">Main cover image — recommended 900×600px</div>
+      <img src="../images/tipsy-main1.jpg" alt="Main image">
     </div>
     <div class="cover-side">
       <div class="cover-thumb">
         <div class="../images/tipsy-detail1.jpg">Detail 1</div>
+        <img src="../images/tipsy-detail1.jpg" alt="detail 1 image">
       </div>
       <div class="cover-thumb">
         <div class="../images/tipsy-detail2.jpg">Detail 2</div>
+        <img src="../images/tipsy-detail2.jpg" alt="detail 2 image">
       </div>
     </div>
   </div>
@@ -382,7 +381,7 @@
 
         <!-- Full-width image with caption -->
         <div class="img-full">
-          <!-- <img src="../images/[project]-overview.jpg" alt="Overview image"> -->
+          <img src="../images/tipsy-main.jpg" alt="Overview image">
           <div class="../images/tipsy-main.jpg">Full-width image — recommended 1200×700px</div>
         </div>
         <p class="img-caption">The CAD model of Tipsy.</p>
@@ -392,24 +391,24 @@
       <div class="content-section fade-up">
         <span class="section-label">Process</span>
         <p class="prose">
-          Describe how you approached the project — your methodology, key design decisions, fabrication steps, or engineering challenges. This section shows how you think, not just what you built.
+          Starting with a single leg in CAD to figure out the dimensions and joint placements, I 3D printed prototypes to test the range of motion and clearances. Once I was happy, I expanded to 4 legs and designed a central body to connect them, which also housed the microcontroller and battery. Programming the gait was a challenge — I had to implement a state machine that could handle the timing of each leg's movement without blocking the main loop, which was new territory for me, with plenty of troubleshooting using Claude. Once I was happy with it, I reprinted all the components in PETG for better durability and colors.
         </p>
 
         <!-- Side-by-side image pair -->
         <div class="img-pair">
           <div class="img-half">
-            <!-- <img src="../images/tipsy-process-1.jpg" alt="Process step 1"> -->
+            <img src="../images/tipsy-process1.jpg" alt="Process step 1">
             <div class="../images/tipsy-process1.jpg">Process image 1</div>
           </div>
           <div class="img-half">
-            <!-- <img src="../images/tipsy-process-2.jpg" alt="Process step 2"> -->
+            <img src="../images/tipsy-process2.jpg" alt="Process step 2">
             <div class="../images/tipsy-process2.jpg">Process image 2</div>
           </div>
         </div>
         <p class="img-caption">Originally Tipsy was red PLA for prototyping.</p>
 
         <p class="prose" style="margin-top: 24px;">
-          Continue the process narrative here if needed. You can add as many image blocks and prose paragraphs as the project warrants — just copy the patterns above.
+          After getting the mechanics and firmware working, I designed a custom web interface that runs on the ESP32 itself, allowing me to control the robot from my phone without needing a separate controller. This was a fun challenge that involved setting up a WiFi access point on the ESP32 and writing a simple webpage with buttons and a joystick control. It was rewarding to see everything come together in a cohesive project that I could show off to friends and family.
         </p>
 
         <!--
@@ -427,15 +426,16 @@
       <div class="content-section fade-up">
         <span class="section-label">Outcome</span>
         <p class="prose">
-          What was the result? What did it teach you? What would you do differently? This closes the narrative arc of the project — be specific and honest.
+          If I had to start over there are a couple things I would change — I would have gone with a lithium battery from the start instead of prototyping with AAs, which caused some headaches with power delivery. I also would have spent more time on the initial leg design to get the range of motion and clearances right before moving on to the full body, which would have saved some time in the long run. But overall I'm happy with how it turned out — it's a fun little project, and it taught me a ton about embedded programming and web development.
         </p>
 
         <!-- Optional final image -->
         <div class="img-full">
           <!-- <img src="../images/[project]-outcome.jpg" alt="Final result"> -->
           <div class="img-placeholder">Final result image</div>
+          <img src="../images/tipsy-cover.jpeg" alt="Overview image">
         </div>
-        <p class="img-caption">Caption for the final image.</p>
+        <p class="img-caption">Final product.</p>
       </div>
 
     </div>
@@ -444,33 +444,25 @@
     <aside class="project-sidebar">
 
       <div class="sidebar-section">
-        <p class="sidebar-label">Technologies & Tools</p>
+        <p class="sidebar-label">Programs & Materials</p>
         <!--
           Replace these tags with the actual tools/materials used.
           Add or remove <span class="tag"> items as needed.
         -->
         <div class="tags-wrap">
-          <span class="tag">Tool A</span>
-          <span class="tag">Tool B</span>
-          <span class="tag">Material C</span>
-          <span class="tag">Software D</span>
+          <span class="tag">Fusion 360</span>
+          <span class="tag">Arduino IDE</span>
+          <span class="tag">ESP32</span>
+          <span class="tag">C++</span>
+          <span class="tag">PLA and PETG</span>
         </div>
       </div>
 
       <div class="sidebar-section">
         <p class="sidebar-label">Context</p>
         <p class="sidebar-text">
-          Any relevant context — course, team size, time frame, client, or constraints.
+        This project was a personal one that I built for fun and to push my skills in embedded programming and microelectronics. It wasn't for a class, so the timeline was flexible around my workload and came together slowly over the course of a month. Programming was mainly done through trial and error with Claude building the main frames and helping troubleshoot issues.
         </p>
-      </div>
-
-      <!--
-        OPTIONAL: Links section — delete this block if no links
-      -->
-      <div class="sidebar-section">
-        <p class="sidebar-label">Links</p>
-        <a href="#" class="sidebar-link">GitHub repo →</a>
-        <a href="#" class="sidebar-link">Live demo →</a>
       </div>
 
     </aside>
@@ -486,7 +478,7 @@
     <span class="footer-copy">© 2026 John Price</span>
     <div class="footer-links">
       <a href="https://www.linkedin.com/in/johnprice7/" target="_blank">LinkedIn</a>
-      <a href="mailto:price423@purdue.edu">Email</a>
+      <a href="mailto:jcprice2024@gmail.com">Email</a>
     </div>
   </footer>
 
