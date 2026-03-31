@@ -167,3 +167,11 @@ footer {
   nav { padding: 18px 24px; }
   footer { padding: 20px 24px; flex-direction: column; gap: 16px; text-align: center; }
 }
+
+.cover-main img, .cover-thumb img,
+.img-full img, .img-half img, .img-third img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
