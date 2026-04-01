@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jukebox — John Price</title>
+  <link rel="stylesheet" href="../shared.css" />
+  <style>
+    .project-hero {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 56px;
+      align-items: end;
+      padding: 64px 48px 52px;
+      border-bottom: 1px solid var(--border);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .hero-tag {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--purple);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+    .hero-line {
+      width: 32px;
+      height: 1px;
+      background: var(--purple);
+      margin-bottom: 20px;
+    }
+    .project-title {
+      font-family: var(--serif);
+      font-size: clamp(38px, 5vw, 58px);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .project-subtitle {
+      font-size: 14px;
+      color: var(--text2);
+      line-height: 1.75;
+      max-width: 440px;
+    }
+    .meta-list { display: flex; flex-direction: column; gap: 0; }
+    .meta-item { border-top: 1px solid var(--border); padding: 14px 0; }
+    .meta-item:last-child { border-bottom: 1px solid var(--border); }
+    .meta-label {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+    .meta-value { font-size: 13px; color: var(--text2); }
+    .meta-value.accent { color: var(--purple); }
+
+    .cover-area {
+      height: 400px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .cover-main {
+      background: var(--bg2);
+      border-right: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .cover-main img, .cover-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    .cover-side { display: grid; grid-template-rows: 1fr 1fr; }
+    .cover-thumb {
+      background: var(--bg3);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .cover-thumb:last-child { border-bottom: none; }
+
+    .project-body {
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 72px;
+      padding: 60px 48px 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: start;
+    }
+    .content-section { margin-bottom: 52px; }
+    .content-section .section-label { display: block; margin-bottom: 18px; }
+    .prose { font-size: 15px; line-height: 1.9; color: var(--text2); }
+
+    .img-full {
+      width: 100%;
+      height: 280px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      overflow: hidden;
+      margin: 28px 0 10px;
+    }
+    .img-full img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .img-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 28px 0 10px;
+    }
+    .img-pair .img-half {
+      height: 200px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .img-pair .img-half img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .img-trio {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin: 28px 0 10px;
+    }
+    .img-trio .img-third {
+      height: 160px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .img-trio .img-third img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .img-caption {
+      font-size: 11px;
+      color: var(--text3);
+      letter-spacing: 0.04em;
+      margin-bottom: 28px;
+    }
+
+    .project-sidebar { position: sticky; top: 88px; }
+    .sidebar-section { border-top: 1px solid var(--border); padding: 20px 0; }
+    .sidebar-label {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text3);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+    .sidebar-text { font-size: 13px; color: var(--text2); line-height: 1.7; }
+    .sidebar-link {
+      display: block;
+      font-size: 13px;
+      color: var(--purple);
+      margin-bottom: 8px;
+      transition: opacity 0.2s;
+    }
+    .sidebar-link:hover { opacity: 0.7; }
+    .tags-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .project-nav {
+      padding: 32px 48px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .project-nav a {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text3);
+      transition: color 0.2s;
+    }
+    .project-nav a:hover { color: var(--purple); }
+    .project-nav .arrow { color: var(--purple); }
+
+    @media (max-width: 768px) {
+      .project-hero  { grid-template-columns: 1fr; padding: 40px 24px 36px; gap: 32px; }
+      .cover-area    { height: 260px; grid-template-columns: 1fr; }
+      .cover-side    { display: none; }
+      .project-body  { grid-template-columns: 1fr; padding: 40px 24px 60px; gap: 40px; }
+      .project-sidebar { position: static; }
+      .img-pair      { grid-template-columns: 1fr; }
+      .img-trio      { grid-template-columns: 1fr 1fr; }
+      .project-nav   { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">John Price</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#engineering">Work</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="mailto:jcprice2024@gmail.com">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="project-hero fade-up">
+    <div>
+      <p class="hero-tag">Engineering Projects — Electronics</p>
+      <div class="hero-line"></div>
+      <h1 class="project-title">Jukebox</h1>
+      <p class="project-subtitle">
+        A Minecraft-themed physical jukebox with NFC disc switching, stereo audio, and full playback controls — built around an ESP32-S3 with a custom 3D-printed enclosure and a library of hand-made discs.
+      </p>
+    </div>
+    <div class="meta-list">
+      <div class="meta-item">
+        <p class="meta-label">Year</p>
+        <p class="meta-value">2026</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Role</p>
+        <p class="meta-value">Solo Build</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Status</p>
+        <p class="meta-value accent">Complete</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-area">
+    <div class="cover-main">
+      <!-- <img src="../images/jukebox-main.jpg" alt="Jukebox finished build"> -->
+      <div class="img-placeholder">Main cover image</div>
+    </div>
+    <div class="cover-side">
+      <div class="cover-thumb">
+        <!-- <img src="../images/jukebox-discs.jpg" alt="NFC discs"> -->
+        <div class="img-placeholder">NFC discs</div>
+      </div>
+      <div class="cover-thumb">
+        <!-- <img src="../images/jukebox-interior.jpg" alt="Interior electronics"> -->
+        <div class="img-placeholder">Interior</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-body">
+    <div class="project-content">
+
+      <div class="content-section fade-up">
+        <span class="section-label">Overview</span>
+        <p class="prose">
+          The Jukebox is a self-contained music player built inside a custom enclosure modeled after the Minecraft in-game jukebox. The core interaction is physical — you insert one of several hand-made discs, each embedded with an NFC tag, and the player reads the tag and starts playing the associated playlist from an SD card. Stereo audio comes from two 3W speakers with dedicated amplifiers, powered by a standard 5V USB battery pack. The front panel has four buttons (shuffle, previous, next, play/pause) and a potentiometer for volume control, making it fully usable without any phone or screen.
+        </p>
+
+        <div class="img-full">
+          <!-- <img src="../images/jukebox-overview.jpg" alt="Jukebox overview"> -->
+          <div class="img-placeholder">Full enclosure — front view</div>
+        </div>
+        <p class="img-caption">The finished enclosure with disc slot, speaker grilles, and control panel.</p>
+      </div>
+
+      <div class="content-section fade-up">
+        <span class="section-label">Process</span>
+        <p class="prose">
+          The project started with the enclosure design in Fusion 360, modeled to match the proportions of the Minecraft jukebox while leaving enough interior volume for all the electronics. The disc slot geometry was one of the trickier CAD challenges — it needed to guide the disc consistently over the RFID reader without jamming or misreading.
+        </p>
+
+        <div class="img-pair">
+          <div class="img-half">
+            <!-- <img src="../images/jukebox-cad.jpg" alt="CAD model"> -->
+            <div class="img-placeholder">CAD model</div>
+          </div>
+          <div class="img-half">
+            <!-- <img src="../images/jukebox-print.jpg" alt="3D printed parts"> -->
+            <div class="img-placeholder">Printed parts</div>
+          </div>
+        </div>
+        <p class="img-caption">The Fusion 360 model (left) and printed enclosure parts before assembly (right).</p>
+
+        <p class="prose" style="margin-top: 24px;">
+          The electronics side had two significant hardware problems to solve. The first was a pin conflict — the RFID module and SD card module both use SPI, and sharing the same SPI bus caused them to interfere with each other. Switching from a standard ESP32 WROOM to an ESP32-S3 gave enough additional GPIO pins to assign each module its own dedicated SPI bus, which resolved the issue cleanly. The second problem was power: the ESP32's 3.3V output couldn't supply enough current during SD card read spikes, causing resets and read failures. Adding a 5V-to-3.3V buck converter with adequate current headroom fixed this.
+        </p>
+
+        <div class="img-pair">
+          <div class="img-half">
+            <!-- <img src="../images/jukebox-wiring.jpg" alt="Wiring layout"> -->
+            <div class="img-placeholder">Wiring layout</div>
+          </div>
+          <div class="img-half">
+            <!-- <img src="../images/jukebox-assembled.jpg" alt="Electronics assembled"> -->
+            <div class="img-placeholder">Electronics assembled</div>
+          </div>
+        </div>
+        <p class="img-caption">Internal wiring layout (left) and fully assembled electronics before closing the enclosure (right).</p>
+
+        <p class="prose" style="margin-top: 24px;">
+          Loading the music library was its own process. I used an open-source tool to export a CSV of song and artist names from my Spotify playlists, then fed that into a second tool that automatically found each song on YouTube and downloaded the MP3. This gave me a clean library organized by playlist folder, which maps directly to each disc's NFC tag ID in the firmware.
+        </p>
+
+        <div class="img-trio">
+          <div class="img-third">
+            <!-- <img src="../images/jukebox-disc1.jpg" alt="Disc detail"> -->
+            <div class="img-placeholder">Disc detail</div>
+          </div>
+          <div class="img-third">
+            <!-- <img src="../images/jukebox-disc2.jpg" alt="Disc collection"> -->
+            <div class="img-placeholder">Disc collection</div>
+          </div>
+          <div class="img-third">
+            <!-- <img src="../images/jukebox-nfc.jpg" alt="NFC tag"> -->
+            <div class="img-placeholder">NFC tag</div>
+          </div>
+        </div>
+        <p class="img-caption">Custom discs with embedded NFC tags — each maps to a different playlist folder on the SD card.</p>
+      </div>
+
+      <div class="content-section fade-up">
+        <span class="section-label">Outcome</span>
+        <p class="prose">
+          The jukebox works exactly as intended — insert a disc, music starts. The physical interaction is genuinely satisfying in a way a phone UI isn't. The main thing I'd change in a future version is the speaker placement and enclosure acoustics; the current geometry is constrained by the Minecraft proportions, so there isn't much room for the speakers to breathe. I'd also look into a proper DAC instead of relying on the ESP32-S3's built-in audio output for cleaner sound. But as a first embedded audio project it exceeded what I thought I could build, and the SPI bus debugging was a solid lesson in reading datasheets carefully before assuming two modules will play nicely together.
+        </p>
+
+        <div class="img-full">
+          <!-- <img src="../images/jukebox-final.jpg" alt="Final jukebox"> -->
+          <div class="img-placeholder">Final build — in use</div>
+        </div>
+        <p class="img-caption">The finished jukebox with a full set of discs.</p>
+      </div>
+
+    </div>
+
+    <aside class="project-sidebar">
+      <div class="sidebar-section">
+        <p class="sidebar-label">Electronics</p>
+        <div class="tags-wrap">
+          <span class="tag">ESP32-S3</span>
+          <span class="tag">RFID / NFC module</span>
+          <span class="tag">SD card module</span>
+          <span class="tag">2× 3W speakers</span>
+          <span class="tag">Stereo amplifiers</span>
+          <span class="tag">Buck converter</span>
+          <span class="tag">Potentiometer</span>
+          <span class="tag">5V battery pack</span>
+        </div>
+      </div>
+      <div class="sidebar-section">
+        <p class="sidebar-label">Software & Fabrication</p>
+        <div class="tags-wrap">
+          <span class="tag">Fusion 360</span>
+          <span class="tag">Arduino IDE</span>
+          <span class="tag">C++</span>
+          <span class="tag">PLA</span>
+        </div>
+      </div>
+      <div class="sidebar-section">
+        <p class="sidebar-label">Context</p>
+        <p class="sidebar-text">
+          Personal project built for fun. The Minecraft aesthetic was the original inspiration — the engineering challenges around SPI bus conflicts and power delivery turned it into a much deeper learning experience than expected.
+        </p>
+      </div>
+    </aside>
+  </div>
+
+  <div class="project-nav">
+    <a href="assignment-tracker.html"><span class="arrow">←</span> Assignment Tracker</a>
+    <a href="eagle-project.html">Eagle Project <span class="arrow">→</span></a>
+  </div>
+
+  <footer>
+    <span class="footer-copy">© 2026 John Price</span>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/johnprice7/" target="_blank">LinkedIn</a>
+      <a href="mailto:jcprice2024@gmail.com">Email</a>
+    </div>
+  </footer>
+
+</body>
+</html>

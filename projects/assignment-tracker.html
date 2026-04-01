@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assignment Tracker — John Price</title>
+  <link rel="stylesheet" href="../shared.css" />
+  <style>
+    .project-hero {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 56px;
+      align-items: end;
+      padding: 64px 48px 52px;
+      border-bottom: 1px solid var(--border);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .hero-tag {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--purple);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+    .hero-line {
+      width: 32px;
+      height: 1px;
+      background: var(--purple);
+      margin-bottom: 20px;
+    }
+    .project-title {
+      font-family: var(--serif);
+      font-size: clamp(38px, 5vw, 58px);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .project-subtitle {
+      font-size: 14px;
+      color: var(--text2);
+      line-height: 1.75;
+      max-width: 440px;
+    }
+    .meta-list { display: flex; flex-direction: column; gap: 0; }
+    .meta-item { border-top: 1px solid var(--border); padding: 14px 0; }
+    .meta-item:last-child { border-bottom: 1px solid var(--border); }
+    .meta-label {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+    .meta-value { font-size: 13px; color: var(--text2); }
+    .meta-value.accent { color: var(--purple); }
+
+    .cover-area {
+      height: 400px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .cover-main {
+      background: var(--bg2);
+      border-right: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .cover-main img, .cover-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .cover-side { display: grid; grid-template-rows: 1fr 1fr; }
+    .cover-thumb {
+      background: var(--bg3);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .cover-thumb:last-child { border-bottom: none; }
+
+    .project-body {
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 72px;
+      padding: 60px 48px 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: start;
+    }
+    .content-section { margin-bottom: 52px; }
+    .content-section .section-label { display: block; margin-bottom: 18px; }
+    .prose { font-size: 15px; line-height: 1.9; color: var(--text2); }
+
+    .img-full {
+      width: 100%;
+      height: 280px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      overflow: hidden;
+      margin: 28px 0 10px;
+    }
+    .img-full img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .img-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 28px 0 10px;
+    }
+    .img-pair .img-half {
+      height: 200px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .img-pair .img-half img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .img-trio {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin: 28px 0 10px;
+    }
+    .img-trio .img-third {
+      height: 160px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .img-trio .img-third img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .img-caption {
+      font-size: 11px;
+      color: var(--text3);
+      letter-spacing: 0.04em;
+      margin-bottom: 28px;
+    }
+
+    .project-sidebar { position: sticky; top: 88px; }
+    .sidebar-section { border-top: 1px solid var(--border); padding: 20px 0; }
+    .sidebar-label {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text3);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+    .sidebar-text { font-size: 13px; color: var(--text2); line-height: 1.7; }
+    .sidebar-link {
+      display: block;
+      font-size: 13px;
+      color: var(--purple);
+      margin-bottom: 8px;
+      transition: opacity 0.2s;
+    }
+    .sidebar-link:hover { opacity: 0.7; }
+    .tags-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .project-nav {
+      padding: 32px 48px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .project-nav a {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text3);
+      transition: color 0.2s;
+    }
+    .project-nav a:hover { color: var(--purple); }
+    .project-nav .arrow { color: var(--purple); }
+
+    @media (max-width: 768px) {
+      .project-hero  { grid-template-columns: 1fr; padding: 40px 24px 36px; gap: 32px; }
+      .cover-area    { height: 260px; grid-template-columns: 1fr; }
+      .cover-side    { display: none; }
+      .project-body  { grid-template-columns: 1fr; padding: 40px 24px 60px; gap: 40px; }
+      .project-sidebar { position: static; }
+      .img-pair      { grid-template-columns: 1fr; }
+      .img-trio      { grid-template-columns: 1fr 1fr; }
+      .project-nav   { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">John Price</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#engineering">Work</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="mailto:jcprice2024@gmail.com">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="project-hero fade-up">
+    <div>
+      <p class="hero-tag">Design Work — Web Development</p>
+      <div class="hero-line"></div>
+      <h1 class="project-title">Assignment Tracker</h1>
+      <p class="project-subtitle">
+        A dark-themed React web app for tracking assignments, milestones, and deadlines — built from scratch, deployed on Vercel, and designed to live on your iPad home screen like a native app.
+      </p>
+    </div>
+    <div class="meta-list">
+      <div class="meta-item">
+        <p class="meta-label">Year</p>
+        <p class="meta-value">2026</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Role</p>
+        <p class="meta-value">Solo — Design & Development</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Status</p>
+        <p class="meta-value accent">Live</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-area">
+    <div class="cover-main">
+      <!-- <img src="../images/tracker-main.jpg" alt="Assignment Tracker main view"> -->
+      <div class="img-placeholder">Main screenshot</div>
+    </div>
+    <div class="cover-side">
+      <div class="cover-thumb">
+        <!-- <img src="../images/tracker-detail1.jpg" alt="Add assignment form"> -->
+        <div class="img-placeholder">Form view</div>
+      </div>
+      <div class="cover-thumb">
+        <!-- <img src="../images/tracker-detail2.jpg" alt="Calendar view"> -->
+        <div class="img-placeholder">Calendar view</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-body">
+    <div class="project-content">
+
+      <div class="content-section fade-up">
+        <span class="section-label">Overview</span>
+        <p class="prose">
+          The Assignment Tracker started as a practical problem — I wanted a focused, distraction-aware tool for managing coursework that went beyond a basic to-do list. The idea was to input assignments and milestones with due dates, and have the app surface urgency clearly so nothing slips through the cracks. Built entirely in React and deployed on Vercel, it runs in any browser and can be added to an iPad or phone home screen as a progressive web app, making it feel native without the overhead of a full app store submission.
+        </p>
+
+        <div class="img-full">
+          <!-- <img src="../images/tracker-overview.jpg" alt="Dashboard overview"> -->
+          <div class="img-placeholder">Dashboard screenshot — full width</div>
+        </div>
+        <p class="img-caption">The main dashboard, sorted by urgency with color-coded status badges.</p>
+      </div>
+
+      <div class="content-section fade-up">
+        <span class="section-label">Process</span>
+        <p class="prose">
+          The app was built iteratively — starting with a basic list and form, then layering in features as needs became clear. The data model stores each assignment with a title, course, category, due date, milestone list, and a configurable "urgent buffer" — the number of days before a deadline when the assignment flips to urgent status. All data is persisted in localStorage so nothing is lost between sessions, and since each user gets their own isolated storage, the app URL can be shared freely without mixing data between people.
+        </p>
+
+        <div class="img-pair">
+          <div class="img-half">
+            <!-- <img src="../images/tracker-form.jpg" alt="New assignment form"> -->
+            <div class="img-placeholder">Add assignment form</div>
+          </div>
+          <div class="img-half">
+            <!-- <img src="../images/tracker-calendar.jpg" alt="Calendar view"> -->
+            <div class="img-placeholder">Calendar view</div>
+          </div>
+        </div>
+        <p class="img-caption">The add/edit form (left) and the toggleable calendar view plotting all deadlines and milestones (right).</p>
+
+        <p class="prose" style="margin-top: 24px;">
+          Features were added in rounds — the first version had basic add and delete. Later iterations added milestone tracking with individual checkboxes, an edit modal triggered by long-press or a pencil icon, a calendar view that maps all assignments and milestones onto a monthly grid, and filter/sort controls for slicing the list by urgency, course, or completion status. The color scheme and accent color were customizable through simple find-and-replace in the source, making it straightforward to personalize.
+        </p>
+      </div>
+
+      <div class="content-section fade-up">
+        <span class="section-label">Outcome</span>
+        <p class="prose">
+          The app has been in daily use since it launched. The biggest lesson was how much the urgency model matters — surfacing what's actually pressing versus what's just pending makes the difference between a useful tool and a long list that gets ignored. If I were to extend it further, cross-device sync via a lightweight backend (Supabase or Firebase) would be the natural next step, turning it from a personal tool into something that could be shared across devices without duplicating data entry.
+        </p>
+
+        <div class="img-full">
+          <!-- <img src="../images/tracker-mobile.jpg" alt="Mobile home screen view"> -->
+          <div class="img-placeholder">App on iPad home screen</div>
+        </div>
+        <p class="img-caption">Added to the iPad home screen via Safari — no App Store required.</p>
+      </div>
+
+    </div>
+
+    <aside class="project-sidebar">
+      <div class="sidebar-section">
+        <p class="sidebar-label">Built With</p>
+        <div class="tags-wrap">
+          <span class="tag">React</span>
+          <span class="tag">Vite</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">localStorage</span>
+          <span class="tag">CSS-in-JS</span>
+          <span class="tag">Vercel</span>
+          <span class="tag">GitHub</span>
+        </div>
+      </div>
+      <div class="sidebar-section">
+        <p class="sidebar-label">Context</p>
+        <p class="sidebar-text">
+          Personal project built to solve a real need during sophomore year at Purdue. Designed, iterated, and deployed solo over several sessions — no framework boilerplate beyond Vite's React template.
+        </p>
+      </div>
+      <div class="sidebar-section">
+        <p class="sidebar-label">Links</p>
+        <!-- Update this href to your actual Vercel URL -->
+        <a href="#" class="sidebar-link">Live app →</a>
+        <a href="#" class="sidebar-link">GitHub repo →</a>
+      </div>
+    </aside>
+  </div>
+
+  <div class="project-nav">
+    <a href="tipsy.html"><span class="arrow">←</span> Tipsy</a>
+    <a href="jukebox.html">Jukebox <span class="arrow">→</span></a>
+  </div>
+
+  <footer>
+    <span class="footer-copy">© 2026 John Price</span>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/johnprice7/" target="_blank">LinkedIn</a>
+      <a href="mailto:jcprice2024@gmail.com">Email</a>
+    </div>
+  </footer>
+
+</body>
+</html>
