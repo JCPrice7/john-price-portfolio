@@ -228,7 +228,7 @@
       <div class="hero-line"></div>
       <h1 class="project-title">Assignment Tracker</h1>
       <p class="project-subtitle">
-        A dark-themed React web app for tracking assignments, milestones, and deadlines — built from scratch, deployed on Vercel, and designed to live on your iPad home screen like a native app.
+        A React web app for tracking assignments, milestones, and deadlines — built from scratch, deployed on Vercel, and designed to live on an iPad home screen like a native app.
       </p>
     </div>
     <div class="meta-list">
@@ -266,7 +266,7 @@
       <div class="content-section fade-up">
         <span class="section-label">Overview</span>
         <p class="prose">
-          The Assignment Tracker started as a practical problem — I wanted a focused, distraction-aware tool for managing coursework that went beyond a basic to-do list. The idea was to input assignments and milestones with due dates, and have the app surface urgency clearly so nothing slips through the cracks. Built entirely in React and deployed on Vercel, it runs in any browser and can be added to an iPad or phone home screen as a progressive web app, making it feel native without the overhead of a full app store submission.
+          The Assignment Tracker started as a practical problem — I wanted a focused, distraction-aware tool for managing coursework that went beyond a basic to-do list. The idea was to input assignments and milestones with due dates, and have the app integrated with Apple screentime to block distractions when deadlines were close. Built entirely in React and deployed on Vercel, it runs in any browser and can be added to an iPad or phone home screen as a progressive web app, making it feel native without the overhead of a full app store submission.
         </p>
 
         <div class="img-full">
@@ -295,7 +295,7 @@
         <p class="img-caption">The add/edit form (left) and the toggleable calendar view plotting all deadlines and milestones (right).</p>
 
         <p class="prose" style="margin-top: 24px;">
-          Features were added in rounds — the first version had basic add and delete. Later iterations added milestone tracking with individual checkboxes, an edit modal triggered by long-press or a pencil icon, a calendar view that maps all assignments and milestones onto a monthly grid, and filter/sort controls for slicing the list by urgency, course, or completion status. The color scheme and accent color were customizable through simple find-and-replace in the source, making it straightforward to personalize.
+          Features were added in rounds — the first version had basic add and delete. Later iterations added milestone tracking with individual checkboxes, an edit modal triggered by long-press or a pencil icon, a calendar view that maps all assignments and milestones onto a monthly grid, and filter/sort controls for slicing the list by urgency, course, or completion status. The screen time blocking proved impossible to implement without being a native app, but the sorting by urgency (calculated based on due date and the user-configured buffer) ended up being the most critical feature for keeping the list actionable — it surfaces what's actually pressing without letting less urgent items get lost in the shuffle.
         </p>
       </div>
 
