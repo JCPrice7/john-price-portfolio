@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kart Bumper Brackets — John Price</title>
+  <link rel="stylesheet" href="../shared.css" />
+  <style>
+    .project-hero { display: grid; grid-template-columns: 1fr 280px; gap: 56px; align-items: end; padding: 64px 48px 52px; border-bottom: 1px solid var(--border); max-width: 1100px; margin: 0 auto; }
+    .hero-tag { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--purple); font-weight: 500; margin-bottom: 16px; }
+    .hero-line { width: 32px; height: 1px; background: var(--purple); margin-bottom: 20px; }
+    .project-title { font-family: var(--serif); font-size: clamp(38px, 5vw, 58px); font-weight: 300; font-style: italic; line-height: 1.05; color: var(--text); margin-bottom: 20px; }
+    .project-subtitle { font-size: 14px; color: var(--text2); line-height: 1.75; max-width: 440px; }
+    .meta-list { display: flex; flex-direction: column; gap: 0; }
+    .meta-item { border-top: 1px solid var(--border); padding: 14px 0; }
+    .meta-item:last-child { border-bottom: 1px solid var(--border); }
+    .meta-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text3); margin-bottom: 4px; font-weight: 500; }
+    .meta-value { font-size: 13px; color: var(--text2); }
+    .meta-value.accent { color: var(--purple); }
+    .cover-area { height: 400px; display: grid; grid-template-columns: 2fr 1fr; border-bottom: 1px solid var(--border); overflow: hidden; }
+    .cover-main { background: var(--bg2); border-right: 1px solid var(--border); overflow: hidden; }
+    .cover-main img, .cover-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+    .cover-side { display: grid; grid-template-rows: 1fr 1fr; }
+    .cover-thumb { background: var(--bg3); border-bottom: 1px solid var(--border); overflow: hidden; }
+    .cover-thumb:last-child { border-bottom: none; }
+    .project-body { display: grid; grid-template-columns: 1fr 260px; gap: 72px; padding: 60px 48px 80px; max-width: 1100px; margin: 0 auto; align-items: start; }
+    .content-section { margin-bottom: 52px; }
+    .content-section .section-label { display: block; margin-bottom: 18px; }
+    .prose { font-size: 15px; line-height: 1.9; color: var(--text2); }
+    .img-full { width: 100%; height: 280px; background: var(--bg2); border: 1px solid var(--border); border-radius: 5px; overflow: hidden; margin: 28px 0 10px; }
+    .img-full img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .img-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 28px 0 10px; }
+    .img-pair .img-half { height: 200px; background: var(--bg2); border: 1px solid var(--border); border-radius: 5px; overflow: hidden; }
+    .img-pair .img-half img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .img-trio { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin: 28px 0 10px; }
+    .img-trio .img-third { height: 160px; background: var(--bg2); border: 1px solid var(--border); border-radius: 5px; overflow: hidden; }
+    .img-trio .img-third img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .img-caption { font-size: 11px; color: var(--text3); letter-spacing: 0.04em; margin-bottom: 28px; }
+    .iteration-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 28px 0 10px; }
+    .iteration-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 5px; overflow: hidden; }
+    .iteration-img { height: 140px; background: var(--bg2); overflow: hidden; }
+    .iteration-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .iteration-body { padding: 12px 14px; }
+    .iteration-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--purple); font-weight: 500; margin-bottom: 4px; }
+    .iteration-name { font-size: 13px; color: var(--text); margin-bottom: 4px; }
+    .iteration-note { font-size: 11px; color: var(--text3); line-height: 1.5; }
+    .project-sidebar { position: sticky; top: 88px; }
+    .sidebar-section { border-top: 1px solid var(--border); padding: 20px 0; }
+    .sidebar-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text3); font-weight: 500; margin-bottom: 12px; }
+    .sidebar-text { font-size: 13px; color: var(--text2); line-height: 1.7; }
+    .tags-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
+    .project-nav { padding: 32px 48px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; }
+    .project-nav a { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text3); transition: color 0.2s; }
+    .project-nav a:hover { color: var(--purple); }
+    .project-nav .arrow { color: var(--purple); }
+    @media (max-width: 768px) {
+      .project-hero { grid-template-columns: 1fr; padding: 40px 24px 36px; gap: 32px; }
+      .cover-area { height: 260px; grid-template-columns: 1fr; }
+      .cover-side { display: none; }
+      .project-body { grid-template-columns: 1fr; padding: 40px 24px 60px; gap: 40px; }
+      .project-sidebar { position: static; }
+      .img-pair { grid-template-columns: 1fr; }
+      .img-trio, .iteration-row { grid-template-columns: 1fr 1fr; }
+      .project-nav { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">John Price</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#engineering">Work</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="mailto:jcprice2024@gmail.com">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="project-hero fade-up">
+    <div>
+      <p class="hero-tag">Engineering Projects — Purdue Grand Prix · Fabrication</p>
+      <div class="hero-line"></div>
+      <h1 class="project-title">Kart Bumper<br>Brackets</h1>
+      <p class="project-subtitle">
+        An iterative materials engineering challenge — designing and getting race-legal bumper brackets for the Purdue Grand Prix kart across four different materials and multiple regulatory submissions.
+      </p>
+    </div>
+    <div class="meta-list">
+      <div class="meta-item">
+        <p class="meta-label">Year</p>
+        <p class="meta-value">2024 — Present</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Role</p>
+        <p class="meta-value">Engineering Lead</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Status</p>
+        <p class="meta-value accent">In Use</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-area">
+    <div class="cover-main">
+      <!-- <img src="../images/brackets-main.jpg" alt="Final PC-FR brackets on kart"> -->
+      <div class="img-placeholder">Final brackets on kart</div>
+    </div>
+    <div class="cover-side">
+      <div class="cover-thumb">
+        <!-- <img src="../images/brackets-detail.jpg" alt="Bracket detail"> -->
+        <div class="img-placeholder">Bracket detail</div>
+      </div>
+      <div class="cover-thumb">
+        <!-- <img src="../images/brackets-cad.jpg" alt="CAD model"> -->
+        <div class="img-placeholder">CAD model</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-body">
+    <div class="project-content">
+
+      <div class="content-section fade-up">
+        <span class="section-label">Overview</span>
+        <p class="prose">
+          The Purdue Grand Prix Foundation has some of the strictest rules on the circuit when it comes to materials — especially plastics. As Engineering Lead for the Honors College Racing Club, I needed to design new bumper brackets for the kart, but every material choice required either fitting within pre-approved specs or going through a formal variance process with the safety committee. What started as a geometry problem quickly became a materials selection problem, and then a manufacturing consistency problem. Four iterations and three material changes later, the brackets are race-legal and on the kart.
+        </p>
+
+        <div class="img-full">
+          <!-- <img src="../images/brackets-overview.jpg" alt="All four bracket iterations"> -->
+          <div class="img-placeholder">All four material iterations side by side</div>
+        </div>
+        <p class="img-caption">Left to right: PLA prototype, SLS Nylon 12, Carbon Fiber / Kevlar Markforged, and final PC-FR.</p>
+      </div>
+
+      <div class="content-section fade-up">
+        <span class="section-label">Process</span>
+        <p class="prose">
+          Geometry came first. I prototyped the bracket shape in PLA to nail the fit around the chassis and bumper mounting points — PLA is fast to print, cheap to iterate, and the tolerances are predictable. Once the geometry was dialed in, the real challenge began: finding a material that could pass Grand Prix safety review.
+        </p>
+
+        <div class="iteration-row">
+          <div class="iteration-card">
+            <div class="iteration-img">
+              <!-- <img src="../images/brackets-pla.jpg" alt="PLA prototype"> -->
+              <div class="img-placeholder">PLA</div>
+            </div>
+            <div class="iteration-body">
+              <div class="iteration-label">Iteration 1</div>
+              <div class="iteration-name">PLA prototype</div>
+              <div class="iteration-note">Geometry validation only. Not submitted for approval.</div>
+            </div>
+          </div>
+          <div class="iteration-card">
+            <div class="iteration-img">
+              <!-- <img src="../images/brackets-nylon.jpg" alt="SLS Nylon 12"> -->
+              <div class="img-placeholder">Nylon 12</div>
+            </div>
+            <div class="iteration-body">
+              <div class="iteration-label">Iteration 2</div>
+              <div class="iteration-name">SLS Nylon 12</div>
+              <div class="iteration-note">Variance approved, but parts too brittle under impact.</div>
+            </div>
+          </div>
+          <div class="iteration-card">
+            <div class="iteration-img">
+              <!-- <img src="../images/brackets-markforged.jpg" alt="CF/Kevlar Markforged"> -->
+              <div class="img-placeholder">CF / Kevlar</div>
+            </div>
+            <div class="iteration-body">
+              <div class="iteration-label">Iteration 3</div>
+              <div class="iteration-name">Carbon fiber + continuous Kevlar</div>
+              <div class="iteration-note">Print defects too inconsistent. No reliable QC method.</div>
+            </div>
+          </div>
+        </div>
+        <p class="img-caption">The three failed iterations, each ruled out for a different reason.</p>
+
+        <p class="prose" style="margin-top: 24px;">
+          The SLS Nylon 12 parts required a variance submission — I wrote and filed the materials form, and the safety committee approved it. But on the track, the parts were too brittle, shattering on light contact rather than absorbing impact. The carbon fiber nylon with continuous Kevlar reinforcement, printed on a Markforged, was theoretically the right answer — Kevlar is specifically designed to absorb impact energy. But the Markforged process introduced micro-voids and fiber discontinuities that were invisible until the part failed. With no reliable way to identify a defective part before it broke on the kart, I couldn't justify running them.
+        </p>
+
+        <div class="img-pair">
+          <div class="img-half">
+            <!-- <img src="../images/brackets-failure.jpg" alt="Brittle fracture on nylon part"> -->
+            <div class="img-placeholder">Nylon 12 brittle fracture</div>
+          </div>
+          <div class="img-half">
+            <!-- <img src="../images/brackets-markforged-defect.jpg" alt="Markforged print defect"> -->
+            <div class="img-placeholder">Markforged print defect</div>
+          </div>
+        </div>
+        <p class="img-caption">Brittle fracture on the SLS Nylon 12 (left) and a surface defect on the Markforged part indicating an internal void (right).</p>
+
+        <p class="prose" style="margin-top: 24px;">
+          After a chassis change created the need for a redesigned bracket anyway, I took the opportunity to also change the material. PC-FR — a glass fiber reinforced polycarbonate filament with self-extinguishing properties — fit within the Grand Prix's existing approved materials list for fire resistance, didn't require a new variance, and printed consistently on standard FDM equipment. The geometry was updated for the new chassis, printed in PC-FR, and submitted. That's where the design sits now — on the kart and race-legal.
+        </p>
+
+        <div class="img-full">
+          <!-- <img src="../images/brackets-pcfr.jpg" alt="PC-FR brackets installed"> -->
+          <div class="img-placeholder">PC-FR brackets installed on updated chassis</div>
+        </div>
+        <p class="img-caption">The current PC-FR brackets fitted to the new chassis configuration.</p>
+      </div>
+
+      <div class="content-section fade-up">
+        <span class="section-label">Outcome</span>
+        <p class="prose">
+          The brackets are running. More importantly, this project gave me a real-world lesson in the gap between material properties on a datasheet and material behavior in a manufactured part — Kevlar absorbs impact, but not if the fiber path has voids. It also reinforced that regulatory constraints aren't just bureaucratic friction; they force you to think about failure modes you might otherwise skip. Each iteration taught something the datasheet couldn't, and the final design is better for having gone through all of them.
+        </p>
+      </div>
+
+    </div>
+
+    <aside class="project-sidebar">
+      <div class="sidebar-section">
+        <p class="sidebar-label">Materials Tested</p>
+        <div class="tags-wrap">
+          <span class="tag">PLA</span>
+          <span class="tag">SLS Nylon 12</span>
+          <span class="tag">CF Nylon + Kevlar</span>
+          <span class="tag">PC-FR</span>
+        </div>
+      </div>
+      <div class="sidebar-section">
+        <p class="sidebar-label">Tools & Processes</p>
+        <div class="tags-wrap">
+          <span class="tag">Fusion 360</span>
+          <span class="tag">FDM printing</span>
+          <span class="tag">SLS printing</span>
+          <span class="tag">Markforged</span>
+          <span class="tag">Variance submission</span>
+        </div>
+      </div>
+      <div class="sidebar-section">
+        <p class="sidebar-label">Context</p>
+        <p class="sidebar-text">
+          Honors College Racing Club, Purdue Grand Prix. Designed as Engineering Lead to address both a performance need and strict Grand Prix Foundation materials regulations.
+        </p>
+      </div>
+    </aside>
+  </div>
+
+  <div class="project-nav">
+    <a href="eagle-project.html"><span class="arrow">←</span> Eagle Project</a>
+    <a href="racing-sim.html">Racing Sim <span class="arrow">→</span></a>
+  </div>
+
+  <footer>
+    <span class="footer-copy">© 2026 John Price</span>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/johnprice7/" target="_blank">LinkedIn</a>
+      <a href="mailto:jcprice2024@gmail.com">Email</a>
+    </div>
+  </footer>
+
+</body>
+</html>

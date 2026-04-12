@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eagle Project — John Price</title>
+  <link rel="stylesheet" href="../shared.css" />
+  <style>
+    .project-hero { display: grid; grid-template-columns: 1fr 280px; gap: 56px; align-items: end; padding: 64px 48px 52px; border-bottom: 1px solid var(--border); max-width: 1100px; margin: 0 auto; }
+    .hero-tag { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--purple); font-weight: 500; margin-bottom: 16px; }
+    .hero-line { width: 32px; height: 1px; background: var(--purple); margin-bottom: 20px; }
+    .project-title { font-family: var(--serif); font-size: clamp(38px, 5vw, 58px); font-weight: 300; font-style: italic; line-height: 1.05; color: var(--text); margin-bottom: 20px; }
+    .project-subtitle { font-size: 14px; color: var(--text2); line-height: 1.75; max-width: 440px; }
+    .meta-list { display: flex; flex-direction: column; gap: 0; }
+    .meta-item { border-top: 1px solid var(--border); padding: 14px 0; }
+    .meta-item:last-child { border-bottom: 1px solid var(--border); }
+    .meta-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text3); margin-bottom: 4px; font-weight: 500; }
+    .meta-value { font-size: 13px; color: var(--text2); }
+    .meta-value.accent { color: var(--purple); }
+    .cover-area { height: 400px; display: grid; grid-template-columns: 2fr 1fr; border-bottom: 1px solid var(--border); overflow: hidden; }
+    .cover-main { background: var(--bg2); border-right: 1px solid var(--border); overflow: hidden; }
+    .cover-main img, .cover-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+    .cover-side { display: grid; grid-template-rows: 1fr 1fr; }
+    .cover-thumb { background: var(--bg3); border-bottom: 1px solid var(--border); overflow: hidden; }
+    .cover-thumb:last-child { border-bottom: none; }
+    .project-body { display: grid; grid-template-columns: 1fr 260px; gap: 72px; padding: 60px 48px 80px; max-width: 1100px; margin: 0 auto; align-items: start; }
+    .content-section { margin-bottom: 52px; }
+    .content-section .section-label { display: block; margin-bottom: 18px; }
+    .prose { font-size: 15px; line-height: 1.9; color: var(--text2); }
+    .img-full { width: 100%; height: 280px; background: var(--bg2); border: 1px solid var(--border); border-radius: 5px; overflow: hidden; margin: 28px 0 10px; }
+    .img-full img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .img-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 28px 0 10px; }
+    .img-pair .img-half { height: 200px; background: var(--bg2); border: 1px solid var(--border); border-radius: 5px; overflow: hidden; }
+    .img-pair .img-half img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .img-trio { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin: 28px 0 10px; }
+    .img-trio .img-third { height: 160px; background: var(--bg2); border: 1px solid var(--border); border-radius: 5px; overflow: hidden; }
+    .img-trio .img-third img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .img-caption { font-size: 11px; color: var(--text3); letter-spacing: 0.04em; margin-bottom: 28px; }
+    .project-sidebar { position: sticky; top: 88px; }
+    .sidebar-section { border-top: 1px solid var(--border); padding: 20px 0; }
+    .sidebar-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text3); font-weight: 500; margin-bottom: 12px; }
+    .sidebar-text { font-size: 13px; color: var(--text2); line-height: 1.7; }
+    .sidebar-link { display: block; font-size: 13px; color: var(--purple); margin-bottom: 8px; transition: opacity 0.2s; }
+    .sidebar-link:hover { opacity: 0.7; }
+    .tags-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
+    .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
+    .stat-box { background: var(--bg3); border: 1px solid var(--border); border-radius: 5px; padding: 16px; }
+    .stat-number { font-family: var(--serif); font-size: 32px; font-weight: 300; color: var(--purple); line-height: 1; margin-bottom: 4px; }
+    .stat-label { font-size: 11px; color: var(--text3); letter-spacing: 0.08em; text-transform: uppercase; }
+    .project-nav { padding: 32px 48px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; }
+    .project-nav a { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text3); transition: color 0.2s; }
+    .project-nav a:hover { color: var(--purple); }
+    .project-nav .arrow { color: var(--purple); }
+    @media (max-width: 768px) {
+      .project-hero { grid-template-columns: 1fr; padding: 40px 24px 36px; gap: 32px; }
+      .cover-area { height: 260px; grid-template-columns: 1fr; }
+      .cover-side { display: none; }
+      .project-body { grid-template-columns: 1fr; padding: 40px 24px 60px; gap: 40px; }
+      .project-sidebar { position: static; }
+      .img-pair { grid-template-columns: 1fr; }
+      .img-trio { grid-template-columns: 1fr 1fr; }
+      .project-nav { padding: 24px; }
+      .stat-row { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">John Price</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#engineering">Work</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="mailto:jcprice2024@gmail.com">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="project-hero fade-up">
+    <div>
+      <p class="hero-tag">Engineering Projects — Leadership & Construction</p>
+      <div class="hero-line"></div>
+      <h1 class="project-title">Eagle Scout Project</h1>
+      <p class="project-subtitle">
+        At 14, I proposed, funded, and led a full relocation and renovation of my church's preschool playground — raising $27,500, navigating contractors and surprises, and delivering a completed project before the school year started.
+      </p>
+    </div>
+    <div class="meta-list">
+      <div class="meta-item">
+        <p class="meta-label">Timeline</p>
+        <p class="meta-value">Aug 2020 — Aug 2021</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Role</p>
+        <p class="meta-value">Project Lead</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Status</p>
+        <p class="meta-value accent">Complete</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-area">
+    <div class="cover-main">
+      <!-- <img src="../images/eagle-main.jpg" alt="Completed playground"> -->
+      <div class="img-placeholder">Completed playground — main view</div>
+    </div>
+    <div class="cover-side">
+      <div class="cover-thumb">
+        <!-- <img src="../images/eagle-before.jpg" alt="Before — old location"> -->
+        <div class="img-placeholder">Before</div>
+      </div>
+      <div class="cover-thumb">
+        <!-- <img src="../images/eagle-after.jpg" alt="After — new location"> -->
+        <div class="img-placeholder">After</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-body">
+    <div class="project-content">
+
+      <div class="content-section fade-up">
+        <span class="section-label">Overview</span>
+        <p class="prose">
+          The preschool at my church had a playground problem — it was across a parking lot from the building, hidden in a ditch near a storage shed, and difficult to safely move children between. At 14, I decided my Eagle Scout project would fix that. I proposed relocating and fully renovating the playground to a better position on the property, bringing it closer to the school and out of the ditch entirely.
+        </p>
+
+        <div class="stat-row">
+          <div class="stat-box">
+            <div class="stat-number">$27.5k</div>
+            <div class="stat-label">Total funding raised</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">1 yr</div>
+            <div class="stat-label">Planning to completion</div>
+          </div>
+        </div>
+
+        <p class="prose">
+          The project ran from August 2020 through August 2021 — a full year from first proposal to ribbon cutting, completing just before the new school year began. What started as a community service requirement became one of the most formative project management experiences of my life, and the first time I realized I could take a large, open-ended problem and drive it to a finished outcome.
+        </p>
+      </div>
+
+      <div class="content-section fade-up">
+        <span class="section-label">Process</span>
+        <p class="prose">
+          Before approaching anyone for money or approval, I built scaled CAD models of several proposed locations on the church property. Having accurate layouts made the presentations concrete — trustees could see exactly where the playground would sit, how it would relate to the building entrance, and what the grading implications were. I presented at two separate trustee meetings, refining the proposal between sessions based on their feedback, and ultimately secured $20,000 from the church trustees.
+        </p>
+
+        <div class="img-pair">
+          <div class="img-half">
+            <!-- <img src="../images/eagle-cad.jpg" alt="CAD site model"> -->
+            <div class="img-placeholder">CAD site layout model</div>
+          </div>
+          <div class="img-half">
+            <!-- <img src="../images/eagle-presentation.jpg" alt="Trustee presentation"> -->
+            <div class="img-placeholder">Trustee presentation</div>
+          </div>
+        </div>
+        <p class="img-caption">Scaled CAD models of the proposed site (left) used in trustee presentations (right).</p>
+
+        <p class="prose" style="margin-top: 24px;">
+          To reach the congregation more broadly, I produced a video explaining the vision for the project and played it during a church service. That brought in an additional $7,500 in donations — bringing the total to $27,500. The bulk of the budget went toward the contractor handling ground regrading, retaining wall construction, and fencing. My team handled everything else: tearing down the old playground, cleaning and repainting all the equipment, and reassembling it in the new location. We also built new additions including a folding sandbox designed to keep animals out when not in use, and planted greenery along the fence line.
+        </p>
+
+        <div class="img-full">
+          <!-- <img src="../images/eagle-construction.jpg" alt="Construction in progress"> -->
+          <div class="img-placeholder">Construction in progress</div>
+        </div>
+        <p class="img-caption">Retaining wall and regrading work during the July 2021 construction phase.</p>
+
+        <p class="prose" style="margin-top: 0;">
+          Construction ran through July and August 2021, and wasn't without surprises. Weather delays pushed the schedule. The footer pour required roughly twice the concrete originally estimated — a lesson in building contingency into budgets and timelines. A gas main was discovered about four inches below the surface during excavation, requiring an unplanned work stoppage and coordination with the utility company. And some of my early measurements were off, requiring adjustments mid-build. Each issue was solvable, but none were in the plan, and managing them in real time — with contractors, volunteers, and a deadline — was a formative experience in what it actually takes to deliver a project.
+        </p>
+
+        <div class="img-trio">
+          <div class="img-third">
+            <!-- <img src="../images/eagle-teardown.jpg" alt="Teardown"> -->
+            <div class="img-placeholder">Teardown</div>
+          </div>
+          <div class="img-third">
+            <!-- <img src="../images/eagle-painting.jpg" alt="Repainting"> -->
+            <div class="img-placeholder">Repainting equipment</div>
+          </div>
+          <div class="img-third">
+            <!-- <img src="../images/eagle-sandbox.jpg" alt="Sandbox build"> -->
+            <div class="img-placeholder">Folding sandbox build</div>
+          </div>
+        </div>
+        <p class="img-caption">Teardown, repainting, and the custom folding sandbox — all done by hand with the project team.</p>
+      </div>
+
+      <div class="content-section fade-up">
+        <span class="section-label">Outcome</span>
+        <p class="prose">
+          The playground opened in August 2021, on schedule and within budget, and has been in use by the preschool ever since. The relocation solved the original problem completely — kids no longer cross a parking lot to reach it, and the space feels like part of the building rather than an afterthought tucked behind a shed.
+        </p>
+
+        <div class="img-full">
+          <!-- <img src="../images/eagle-final.jpg" alt="Finished playground"> -->
+          <div class="img-placeholder">Finished playground — in use</div>
+        </div>
+        <p class="img-caption">The completed playground in its new location, ready for the 2021 school year.</p>
+
+        <p class="prose" style="margin-top: 0;">
+          More than the physical result, this project taught me what it means to actually lead something — not just to have a good idea, but to get buy-in, manage money, coordinate people, and adapt when things go sideways. The gas main, the concrete overrun, the measurement mistakes — none of those were failures, they were the project. That's something I've carried into every team and build since.
+        </p>
+      </div>
+
+    </div>
+
+    <aside class="project-sidebar">
+      <div class="sidebar-section">
+        <p class="sidebar-label">Skills Applied</p>
+        <div class="tags-wrap">
+          <span class="tag">CAD modeling</span>
+          <span class="tag">Fundraising</span>
+          <span class="tag">Public presentation</span>
+          <span class="tag">Project management</span>
+          <span class="tag">Contractor coordination</span>
+          <span class="tag">Construction</span>
+          <span class="tag">Carpentry</span>
+        </div>
+      </div>
+      <div class="sidebar-section">
+        <p class="sidebar-label">Funding</p>
+        <p class="sidebar-text">
+          $20,000 from church trustees via two formal presentations with CAD site models.<br><br>
+          $7,500 from the congregation via a project vision video shown during services.<br><br>
+          $27,500 total — all managed and allocated by me at age 14.
+        </p>
+      </div>
+      <div class="sidebar-section">
+        <p class="sidebar-label">Context</p>
+        <p class="sidebar-text">
+          Eagle Scout rank project, Boy Scouts of America. Planning began August 2020; construction completed August 2021.
+        </p>
+      </div>
+    </aside>
+  </div>
+
+  <div class="project-nav">
+    <a href="jukebox.html"><span class="arrow">←</span> Jukebox</a>
+    <a href="kart-brackets.html">Kart Bumper Brackets <span class="arrow">→</span></a>
+  </div>
+
+  <footer>
+    <span class="footer-copy">© 2026 John Price</span>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/johnprice7/" target="_blank">LinkedIn</a>
+      <a href="mailto:jcprice2024@gmail.com">Email</a>
+    </div>
+  </footer>
+
+</body>
+</html>

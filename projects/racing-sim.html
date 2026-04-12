@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Racing Sim — John Price</title>
+  <link rel="stylesheet" href="../shared.css" />
+  <style>
+    .project-hero { display: grid; grid-template-columns: 1fr 280px; gap: 56px; align-items: end; padding: 64px 48px 52px; border-bottom: 1px solid var(--border); max-width: 1100px; margin: 0 auto; }
+    .hero-tag { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--purple); font-weight: 500; margin-bottom: 16px; }
+    .hero-line { width: 32px; height: 1px; background: var(--purple); margin-bottom: 20px; }
+    .project-title { font-family: var(--serif); font-size: clamp(38px, 5vw, 58px); font-weight: 300; font-style: italic; line-height: 1.05; color: var(--text); margin-bottom: 20px; }
+    .project-subtitle { font-size: 14px; color: var(--text2); line-height: 1.75; max-width: 440px; }
+    .meta-list { display: flex; flex-direction: column; gap: 0; }
+    .meta-item { border-top: 1px solid var(--border); padding: 14px 0; }
+    .meta-item:last-child { border-bottom: 1px solid var(--border); }
+    .meta-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text3); margin-bottom: 4px; font-weight: 500; }
+    .meta-value { font-size: 13px; color: var(--text2); }
+    .meta-value.accent { color: var(--purple); }
+    .cover-area { height: 400px; display: grid; grid-template-columns: 2fr 1fr; border-bottom: 1px solid var(--border); overflow: hidden; }
+    .cover-main { background: var(--bg2); border-right: 1px solid var(--border); overflow: hidden; }
+    .cover-main img, .cover-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+    .cover-side { display: grid; grid-template-rows: 1fr 1fr; }
+    .cover-thumb { background: var(--bg3); border-bottom: 1px solid var(--border); overflow: hidden; }
+    .cover-thumb:last-child { border-bottom: none; }
+    .project-body { display: grid; grid-template-columns: 1fr 260px; gap: 72px; padding: 60px 48px 80px; max-width: 1100px; margin: 0 auto; align-items: start; }
+    .content-section { margin-bottom: 52px; }
+    .content-section .section-label { display: block; margin-bottom: 18px; }
+    .prose { font-size: 15px; line-height: 1.9; color: var(--text2); }
+    .img-full { width: 100%; height: 280px; background: var(--bg2); border: 1px solid var(--border); border-radius: 5px; overflow: hidden; margin: 28px 0 10px; }
+    .img-full img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .img-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 28px 0 10px; }
+    .img-pair .img-half { height: 200px; background: var(--bg2); border: 1px solid var(--border); border-radius: 5px; overflow: hidden; }
+    .img-pair .img-half img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .img-trio { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin: 28px 0 10px; }
+    .img-trio .img-third { height: 160px; background: var(--bg2); border: 1px solid var(--border); border-radius: 5px; overflow: hidden; }
+    .img-trio .img-third img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .img-caption { font-size: 11px; color: var(--text3); letter-spacing: 0.04em; margin-bottom: 28px; }
+    .spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0 28px; }
+    .spec-item { background: var(--bg3); border: 1px solid var(--border); border-radius: 5px; padding: 14px; }
+    .spec-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text3); margin-bottom: 4px; }
+    .spec-value { font-size: 14px; color: var(--text); font-family: var(--serif); }
+    .project-sidebar { position: sticky; top: 88px; }
+    .sidebar-section { border-top: 1px solid var(--border); padding: 20px 0; }
+    .sidebar-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text3); font-weight: 500; margin-bottom: 12px; }
+    .sidebar-text { font-size: 13px; color: var(--text2); line-height: 1.7; }
+    .tags-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
+    .project-nav { padding: 32px 48px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; }
+    .project-nav a { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text3); transition: color 0.2s; }
+    .project-nav a:hover { color: var(--purple); }
+    .project-nav .arrow { color: var(--purple); }
+    @media (max-width: 768px) {
+      .project-hero { grid-template-columns: 1fr; padding: 40px 24px 36px; gap: 32px; }
+      .cover-area { height: 260px; grid-template-columns: 1fr; }
+      .cover-side { display: none; }
+      .project-body { grid-template-columns: 1fr; padding: 40px 24px 60px; gap: 40px; }
+      .project-sidebar { position: static; }
+      .img-pair { grid-template-columns: 1fr; }
+      .img-trio, .spec-grid { grid-template-columns: 1fr 1fr; }
+      .project-nav { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">John Price</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#engineering">Work</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="mailto:jcprice2024@gmail.com">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="project-hero fade-up">
+    <div>
+      <p class="hero-tag">Engineering Projects — Hardware · Electronics</p>
+      <div class="hero-line"></div>
+      <h1 class="project-title">Racing Sim</h1>
+      <p class="project-subtitle">
+        A direct-drive force feedback wheel, custom magnetic pedals, and a folding rig — built from scratch over a summer using a hoverboard motor, open-source firmware, and a lot of troubleshooting.
+      </p>
+    </div>
+    <div class="meta-list">
+      <div class="meta-item">
+        <p class="meta-label">Year</p>
+        <p class="meta-value">2023 — Summer</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Role</p>
+        <p class="meta-value">Solo Build</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Status</p>
+        <p class="meta-value accent">Complete</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-area">
+    <div class="cover-main">
+      <!-- <img src="../images/sim-main.jpg" alt="Full sim rig"> -->
+      <div class="img-placeholder">Full sim rig</div>
+    </div>
+    <div class="cover-side">
+      <div class="cover-thumb">
+        <!-- <img src="../images/sim-wheel.jpg" alt="Direct drive wheel"> -->
+        <div class="img-placeholder">Wheel & motor</div>
+      </div>
+      <div class="cover-thumb">
+        <!-- <img src="../images/sim-pedals.jpg" alt="Custom pedals"> -->
+        <div class="img-placeholder">Custom pedals</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-body">
+    <div class="project-content">
+
+      <div class="content-section fade-up">
+        <span class="section-label">Overview</span>
+        <p class="prose">
+          The summer after my freshman year I wanted a proper racing simulator — but a commercial direct-drive wheel and rig setup runs into the hundreds to thousands of dollars. Instead, I built my own. The result is a direct-drive force feedback wheel generating around 15 Nm of torque, a set of custom magnetic pedals with an Arduino-based controller, and a folding stand that fits everything together. The whole system cost a fraction of a commercial equivalent and taught me more about motor control, embedded electronics, and mechanical design than any class had at that point.
+        </p>
+
+        <div class="spec-grid">
+          <div class="spec-item">
+            <div class="spec-label">Motor</div>
+            <div class="spec-value">Hoverboard hub motor</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Driver</div>
+            <div class="spec-value">ODESC 4.2</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Peak torque</div>
+            <div class="spec-value">~15 Nm</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Power supply</div>
+            <div class="spec-value">480W PSU</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section fade-up">
+        <span class="section-label">Process</span>
+        <p class="prose">
+          The first attempt used a belt-driven design — motor offset from the wheel shaft, connected via a belt and pulley. It was cleaner in layout but introduced consistent slipping under high-torque FFB outputs, which made the wheel feel notchy and unreliable. Switching to direct drive, where the wheel mounts directly on the motor shaft, eliminated the slipping entirely and dramatically improved the feel.
+        </p>
+
+        <div class="img-pair">
+          <div class="img-half">
+            <!-- <img src="../images/sim-belt.jpg" alt="Belt drive prototype"> -->
+            <div class="img-placeholder">Belt drive prototype</div>
+          </div>
+          <div class="img-half">
+            <!-- <img src="../images/sim-directdrive.jpg" alt="Direct drive setup"> -->
+            <div class="img-placeholder">Direct drive setup</div>
+          </div>
+        </div>
+        <p class="img-caption">Belt drive (left) abandoned for slipping under load — replaced with direct drive (right).</p>
+
+        <p class="prose" style="margin-top: 24px;">
+          The motor came from a disassembled hoverboard — the hub motors in hoverboards are brushless and surprisingly capable once you bypass the proprietary controller. I used an ODESC 4.2 motor driver to run the FFBeast open-source firmware, which handles the force feedback signal translation from the game into motor torque commands. A 480W ATX-style power supply provides the headroom needed to hit the torque peaks without voltage sag. Getting the firmware configured and the motor tuned took significant trial and error — motor calibration, encoder alignment, and FFB curve tuning all interact with each other.
+        </p>
+
+        <div class="img-full">
+          <!-- <img src="../images/sim-electronics.jpg" alt="Electronics layout"> -->
+          <div class="img-placeholder">Electronics layout — ODESC, PSU, wiring</div>
+        </div>
+        <p class="img-caption">The ODESC 4.2 motor driver, power supply, and wiring harness behind the wheel mount.</p>
+
+        <p class="prose" style="margin-top: 0;">
+          With the wheel working, I needed pedals to actually test it properly. Rather than buy a set, I designed and built my own from scratch. The pedals use magnetic encoders to read pedal position — more durable and precise than potentiometers, and with no physical wear over time. An Arduino Leonardo handles the USB HID interface, making the pedals appear to the PC as a standard game controller without any drivers. The whole pedal assembly mounts on a folding stand I built that also holds the wheel, so the entire rig folds flat for storage.
+        </p>
+
+        <div class="img-trio">
+          <div class="img-third">
+            <!-- <img src="../images/sim-pedal-cad.jpg" alt="Pedal CAD"> -->
+            <div class="img-placeholder">Pedal CAD</div>
+          </div>
+          <div class="img-third">
+            <!-- <img src="../images/sim-pedal-build.jpg" alt="Pedal build"> -->
+            <div class="img-placeholder">Pedal build</div>
+          </div>
+          <div class="img-third">
+            <!-- <img src="../images/sim-rig-folded.jpg" alt="Rig folded"> -->
+            <div class="img-placeholder">Rig folded flat</div>
+          </div>
+        </div>
+        <p class="img-caption">Pedal design in CAD, assembled pedals with magnetic encoders, and the full rig folded for storage.</p>
+      </div>
+
+      <div class="content-section fade-up">
+        <span class="section-label">Outcome</span>
+        <p class="prose">
+          The wheel works — it produces real, strong force feedback and the pedals are accurate and responsive. The main limitation is software compatibility: most major racing titles only accept input from commercially certified wheels, so the sim doesn't get as much use as it deserves. That's a frustrating but real constraint of the DIY route.
+        </p>
+
+        <div class="img-full">
+          <!-- <img src="../images/sim-final.jpg" alt="Finished rig in use"> -->
+          <div class="img-placeholder">Finished rig in use</div>
+        </div>
+        <p class="img-caption">The completed rig — direct drive wheel, magnetic pedals, and folding stand.</p>
+
+        <p class="prose" style="margin-top: 0;">
+          What I didn't expect was how much this project would shape everything that came after. Building it alongside an electronics internship the same summer created a feedback loop — problems at the internship informed the sim build and vice versa. The motor control concepts, the embedded firmware work, the hardware debugging — that summer is where my interest in electronics stopped being casual and became a genuine focus. Almost every electronics project since traces back to the confidence and curiosity this build kicked off.
+        </p>
+      </div>
+
+    </div>
+
+    <aside class="project-sidebar">
+      <div class="sidebar-section">
+        <p class="sidebar-label">Wheel Hardware</p>
+        <div class="tags-wrap">
+          <span class="tag">Hoverboard hub motor</span>
+          <span class="tag">ODESC 4.2</span>
+          <span class="tag">FFBeast firmware</span>
+          <span class="tag">480W PSU</span>
+        </div>
+      </div>
+      <div class="sidebar-section">
+        <p class="sidebar-label">Pedal Hardware</p>
+        <div class="tags-wrap">
+          <span class="tag">Arduino Leonardo</span>
+          <span class="tag">Magnetic encoders</span>
+          <span class="tag">USB HID</span>
+          <span class="tag">3D printed parts</span>
+        </div>
+      </div>
+      <div class="sidebar-section">
+        <p class="sidebar-label">Software</p>
+        <div class="tags-wrap">
+          <span class="tag">FFBeast (open source)</span>
+          <span class="tag">Arduino IDE</span>
+          <span class="tag">Fusion 360</span>
+        </div>
+      </div>
+      <div class="sidebar-section">
+        <p class="sidebar-label">Context</p>
+        <p class="sidebar-text">
+          Personal project built the summer after freshman year. Concurrent with an electronics internship — the two reinforced each other and sparked most of the electronics work that followed.
+        </p>
+      </div>
+    </aside>
+  </div>
+
+  <div class="project-nav">
+    <a href="kart-brackets.html"><span class="arrow">←</span> Kart Bumper Brackets</a>
+    <a href="lego-cars.html">LEGO Cars <span class="arrow">→</span></a>
+  </div>
+
+  <footer>
+    <span class="footer-copy">© 2026 John Price</span>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/johnprice7/" target="_blank">LinkedIn</a>
+      <a href="mailto:jcprice2024@gmail.com">Email</a>
+    </div>
+  </footer>
+
+</body>
+</html>
