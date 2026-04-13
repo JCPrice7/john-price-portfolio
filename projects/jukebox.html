@@ -238,7 +238,7 @@
       </div>
       <div class="meta-item">
         <p class="meta-label">Status</p>
-        <p class="meta-value accent">Complete</p>
+        <p class="meta-value accent">In Progress</p>
       </div>
     </div>
   </div>
@@ -270,7 +270,7 @@
         </p>
 
         <div class="img-full">
-          <!-- <img src="../images/jukebox-overview.jpg" alt="Jukebox overview"> -->
+          <img src="../images/jukebox.jpeg" alt="Jukebox overview">
           <div class="img-placeholder">Full enclosure — front view</div>
         </div>
         <p class="img-caption">The finished enclosure with disc slot, speaker grilles, and control panel.</p>
@@ -288,11 +288,11 @@
             <div class="img-placeholder">CAD model</div>
           </div>
           <div class="img-half">
-            <!-- <img src="../images/jukebox-print.jpg" alt="3D printed parts"> -->
-            <div class="img-placeholder">Printed parts</div>
+            <img src="../images/jukebox1.jpeg" alt="Inner parts">
+            <div class="img-placeholder">Inner parts</div>
           </div>
         </div>
-        <p class="img-caption">The Fusion 360 model (left) and printed enclosure parts before assembly (right).</p>
+        <p class="img-caption">The Fusion 360 model (left) and electronic parts before assembly (right).</p>
 
         <p class="prose" style="margin-top: 24px;">
           The electronics side had two significant hardware problems to solve. The first was a pin conflict — the RFID module and SD card module both use SPI, and sharing the same SPI bus caused them to interfere with each other. Switching from a standard ESP32 WROOM to an ESP32-S3 gave enough additional GPIO pins to assign each module its own dedicated SPI bus, which resolved the issue cleanly. The second problem was power: the ESP32's 3.3V output couldn't supply enough current during SD card read spikes, causing resets and read failures. Adding a 5V-to-3.3V buck converter with adequate current headroom fixed this.
@@ -330,13 +330,13 @@
         </div>
         <p class="img-caption">Custom discs with embedded NFC tags — each maps to a different playlist folder on the SD card.</p>
       </div>
-
+<!--
       <div class="content-section fade-up">
         <span class="section-label">Outcome</span>
         <p class="prose">
           The jukebox works exactly as intended — insert a disc, music starts. The physical interaction is genuinely satisfying in a way a phone UI isn't. The main thing I'd change in a future version is the speaker placement and enclosure acoustics; the current geometry is constrained by the Minecraft proportions, so there isn't much room for the speakers to breathe. I'd also look into a proper DAC instead of relying on the ESP32-S3's built-in audio output for cleaner sound. But as a first embedded audio project it exceeded what I thought I could build, and the SPI bus debugging was a solid lesson in reading datasheets carefully before assuming two modules will play nicely together.
         </p>
-
+      -->
         <div class="img-full">
           <!-- <img src="../images/jukebox-final.jpg" alt="Final jukebox"> -->
           <div class="img-placeholder">Final build — in use</div>
@@ -353,7 +353,7 @@
           <span class="tag">ESP32-S3</span>
           <span class="tag">RFID / NFC module</span>
           <span class="tag">SD card module</span>
-          <span class="tag">2× 3W speakers</span>
+          <span class="tag">2x 3W speakers</span>
           <span class="tag">Stereo amplifiers</span>
           <span class="tag">Buck converter</span>
           <span class="tag">Potentiometer</span>
@@ -364,8 +364,8 @@
         <p class="sidebar-label">Software & Fabrication</p>
         <div class="tags-wrap">
           <span class="tag">Fusion 360</span>
-          <span class="tag">Arduino IDE</span>
-          <span class="tag">C++</span>
+          <span class="tag">Thonny</span>
+          <span class="tag">Python</span>
           <span class="tag">PLA</span>
         </div>
       </div>
