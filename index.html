@@ -12,6 +12,26 @@
       border-bottom: 1px solid var(--border);
       max-width: 1100px;
       margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .hero-photo {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
     }
 
     .hero-name {
@@ -214,6 +234,8 @@
       .project-card.featured { grid-template-columns: 1fr; }
       .project-card.featured .card-image { height: 200px; }
       .about-section { padding: 40px 24px; grid-template-columns: 1fr; gap: 36px; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-photo { aspect-ratio: 1 / 1; max-width: 240px; }
     }
   </style>
 </head>
@@ -230,6 +252,7 @@
 
   <!-- ── Hero ─────────────────────────────────────────── -->
   <section class="hero">
+  <div>
     <div class="fade-up">
       <h1 class="hero-name">John<br><em>Price</em></h1>
     </div>
@@ -242,7 +265,11 @@
         I'm obsessed with how small changes — in composition, process, or design — create outsized differences in performance. From superalloy castings to robots to racing karts, I build things that push the limits of materials.
       </p>
     </div>
-  </section>
+  </div>
+  <div class="hero-photo fade-up">
+    <img src="images/Headshot.jpg" alt="John Price">
+  </div>
+</section>
 
   <!-- ── Engineering Projects ──────────────────────────── -->
   <section class="projects-section" id="engineering">
