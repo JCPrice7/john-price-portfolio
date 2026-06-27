@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Porsche 928 Restoration — John Price</title>
+  <link rel="stylesheet" href="../shared.css" />
+  <style>
+    /* ── Hero ─────────────────────────────────────────── */
+    .project-hero {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 56px;
+      align-items: end;
+      padding: 64px 48px 52px;
+      border-bottom: 1px solid var(--border);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero-tag {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--purple);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .hero-line {
+      width: 32px;
+      height: 1px;
+      background: var(--purple);
+      margin-bottom: 20px;
+    }
+
+    .project-title {
+      font-family: var(--serif);
+      font-size: clamp(38px, 5vw, 58px);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .project-subtitle {
+      font-size: 14px;
+      color: var(--text2);
+      line-height: 1.75;
+      max-width: 440px;
+    }
+
+    .meta-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .meta-item {
+      border-top: 1px solid var(--border);
+      padding: 14px 0;
+    }
+
+    .meta-item:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .meta-label {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+
+    .meta-value {
+      font-size: 13px;
+      color: var(--text2);
+    }
+
+    .meta-value.accent { color: var(--purple); }
+
+    /* ── Cover image area ─────────────────────────────── */
+    .cover-area {
+      height: 400px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .cover-main {
+      background: var(--bg2);
+      border-right: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .cover-side {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+    }
+
+    .cover-thumb {
+      background: var(--bg3);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .cover-thumb:last-child {
+      border-bottom: none;
+    }
+
+    /* ── Body ─────────────────────────────────────────── */
+    .project-body {
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 72px;
+      padding: 60px 48px 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    .content-section {
+      margin-bottom: 52px;
+    }
+
+    .content-section .section-label {
+      display: block;
+      margin-bottom: 18px;
+    }
+
+    .prose {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--text2);
+    }
+
+    .img-full {
+      width: 100%;
+      height: 280px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      overflow: hidden;
+      margin: 28px 0 10px;
+    }
+
+    .img-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 28px 0 10px;
+    }
+
+    .img-pair .img-half {
+      height: 200px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .img-caption {
+      font-size: 11px;
+      color: var(--text3);
+      letter-spacing: 0.04em;
+      margin-bottom: 28px;
+    }
+
+    .img-trio {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin: 28px 0 10px;
+    }
+
+    .img-trio .img-third {
+      height: 220px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    /* ── Sidebar ──────────────────────────────────────── */
+    .project-sidebar {
+      position: sticky;
+      top: 88px;
+    }
+
+    .sidebar-section {
+      border-top: 1px solid var(--border);
+      padding: 20px 0;
+    }
+
+    .sidebar-label {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text3);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .sidebar-text {
+      font-size: 13px;
+      color: var(--text2);
+      line-height: 1.7;
+    }
+
+    .tags-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    /* ── Prev / Next nav ──────────────────────────────── */
+    .project-nav {
+      padding: 32px 48px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .project-nav a {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text3);
+      transition: color 0.2s;
+    }
+
+    .project-nav a:hover { color: var(--purple); }
+    .project-nav .arrow { color: var(--purple); }
+
+    /* ── Responsive ───────────────────────────────────── */
+    @media (max-width: 768px) {
+      .project-hero  { grid-template-columns: 1fr; padding: 40px 24px 36px; gap: 32px; }
+      .cover-area    { height: 260px; grid-template-columns: 1fr; }
+      .cover-side    { display: none; }
+      .project-body  { grid-template-columns: 1fr; padding: 40px 24px 60px; gap: 40px; }
+      .project-sidebar { position: static; }
+      .img-pair      { grid-template-columns: 1fr; }
+      .img-trio      { grid-template-columns: 1fr 1fr; }
+      .project-nav   { padding: 24px; }
+    }
+  </style>
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E9ZX9YN6R5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E9ZX9YN6R5');
+</script>
+
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">John Price</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#engineering">Work</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="mailto:jcprice2024@gmail.com">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── Hero ─────────────────────────────────────────── -->
+  <div class="project-hero fade-up">
+    <div>
+      <p class="hero-tag">Engineering Projects — Automotive</p>
+      <div class="hero-line"></div>
+      <h1 class="project-title">1984 Porsche 928</h1>
+      <p class="project-subtitle">
+        A decade-dormant Porsche 928S pulled from barn storage and brought back to life — diagnosing a long-standing misfire down to a crushed injector seal, restoring a dead instrument cluster, and cleaning up years of accumulated neglect.
+      </p>
+    </div>
+    <div class="meta-list">
+      <div class="meta-item">
+        <p class="meta-label">Year</p>
+        <p class="meta-value">2025</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Status</p>
+        <p class="meta-value accent">In Progress</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Cover images ──────────────────────────────────── -->
+  <!--
+    Horizontal cover shot as main panel.
+    Two vertical shots (barn / engine bay) as side thumbnails.
+  -->
+  <div class="cover-area">
+    <div class="cover-main">
+      <img src="../images/928-cover.jpg" alt="1984 Porsche 928 cover shot"
+           style="width:100%; height:400px; object-fit:cover; object-position:center center; display:block;">
+    </div>
+    <div class="cover-side">
+      <div class="cover-thumb">
+        <img src="../images/928-barn.jpg" alt="928 in the barn, covered in dust"
+             style="width:100%; height:200px; object-fit:cover; object-position:center center; display:block;">
+      </div>
+      <div class="cover-thumb">
+        <img src="../images/928-engine.jpg" alt="Engine bay after cleaning"
+             style="width:100%; height:200px; object-fit:cover; object-position:center center; display:block;">
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Body ──────────────────────────────────────────── -->
+  <div class="project-body">
+    <div class="project-content">
+
+      <!-- OVERVIEW ─────────────────────────────────────── -->
+      <div class="content-section fade-up">
+        <span class="section-label">Overview</span>
+        <p class="prose">
+          This 928 belonged to a friend's father — his daily driver through the eighties, until it started misfiring and ended up parked in a barn, where it sat untouched for well over a decade. When I pulled it back out it was exactly as he'd left it: a thick layer of dust over everything outside, and serious mold growth through the interior. The goal from the start was to get it driving properly again, not just clean it up — which meant actually tracking down the misfire rather than guessing at it.
+        </p>
+
+        <!-- Vertical shot of the car as-found in the barn -->
+        <div class="img-full">
+          <img src="../images/928-barn.jpg" alt="928 sitting in the barn covered in dust"
+               style="width:100%; height:100%; object-fit:cover; object-position:center center; display:block;">
+        </div>
+        <p class="img-caption">As found — over a decade of barn dust.</p>
+      </div>
+
+      <!-- PROCESS ──────────────────────────────────────── -->
+      <div class="content-section fade-up">
+        <span class="section-label">Process</span>
+        <p class="prose">
+          First priority was just getting it clean enough to work on. I scrubbed down the exterior and did a thorough job on the interior — mold on a car that's been sealed up for years gets into everything, so that took a while before it was in a state I was comfortable spending time inside. Once it was clean, I could actually start diagnosing.
+        </p>
+
+        <!-- Engine bay + clean interior side by side -->
+        <div class="img-pair">
+          <div class="img-half">
+            <img src="../images/928-engine.jpg" alt="Engine bay after washing"
+                 style="width:100%; height:100%; object-fit:cover; object-position:center center; display:block;">
+          </div>
+          <div class="img-half">
+            <img src="../images/928-interior-v.jpg" alt="Interior after mold remediation"
+                 style="width:100%; height:100%; object-fit:cover; object-position:center center; display:block;">
+          </div>
+        </div>
+        <p class="img-caption">Engine bay and interior after the initial clean.</p>
+
+        <p class="prose" style="margin-top: 24px;">
+          My first theory on the misfire was a vacuum leak — not an uncommon culprit on a car this age. To test it I ran a pressurized smoke machine through the intake, which required sealing off the intake manifold. Nothing stock fit, so I modeled a custom adapter in Fusion 360 and printed it to mate the smoke machine hose directly to the manifold opening. After pressurizing the system and going over every inch of hose and fitting, nothing showed up. No leak.
+        </p>
+
+        <!-- Full-width transition banner — car on the lift -->
+        <div class="img-full" style="height: 320px;">
+          <img src="../images/928-banner.jpg" alt="928 on the lift during diagnostics"
+               style="width:100%; height:100%; object-fit:cover; object-position:center center; display:block;">
+        </div>
+        <p class="img-caption">Up on the lift for fuel system access.</p>
+
+        <p class="prose" style="margin-top: 24px;">
+          With vacuum ruled out, I moved on to the fuel injectors. The method here was simple but effective: with the engine running, I went cylinder by cylinder and unplugged each injector in turn. On a healthy injector, pulling it while the engine is running causes a noticeable RPM drop and change in sound — the engine has to compensate for losing that cylinder. One of them produced no change at all, which confirmed it wasn't contributing. That was the culprit.
+        </p>
+
+        <p class="prose" style="margin-top: 24px;">
+          I pulled apart the fuel rail to get the injector out, and when it finally came free the problem was immediately obvious — the main O-ring seal was completely crushed and deformed, almost unrecognizable as a seal. It had likely been that way for a long time, causing a lean condition on that cylinder. I sourced a replacement seal, reinstalled the injector, and the misfire was gone on the first start.
+        </p>
+
+        <p class="prose" style="margin-top: 24px;">
+          The next issue was electrical. The entire instrument cluster had gone dark, and a handful of warning lights were lit up with no clear reason. I pulled the dashboard apart and cleaned all the electrical contacts, which were heavily oxidized after years in storage. While I was in there I found several connector clips that had been put back in the wrong positions at some point — likely from a previous repair attempt. Once I tracked down where each one belonged and reseated them correctly, the cluster came back to life.
+        </p>
+      </div>
+
+      <!-- OUTCOME ──────────────────────────────────────── -->
+      <div class="content-section fade-up">
+        <span class="section-label">Outcome</span>
+        <p class="prose">
+          The car runs cleanly now — no misfire, full instrumentation, and a proper interior again. What's left is cosmetic: some trim pieces to replace and a few small things to address before it's fully back to where it should be. The most satisfying part of the diagnosis was that both root causes turned out to be completely fixable without major work — a $5 O-ring and some connector cleanup. It's a good reminder that on older cars, the scary-sounding problems often have straightforward answers if you're willing to work through them methodically.
+        </p>
+
+        <!-- Horizontal interior shot + car between lift arms side by side -->
+        <div class="img-pair">
+          <div class="img-half">
+            <img src="../images/928-interior-h.jpg" alt="Cleaned interior"
+                 style="width:100%; height:100%; object-fit:cover; object-position:center center; display:block;">
+          </div>
+          <div class="img-half">
+            <img src="../images/928-lift.jpg" alt="928 between the lift arms"
+                 style="width:100%; height:100%; object-fit:cover; object-position:center center; display:block;">
+          </div>
+        </div>
+        <p class="img-caption">Restored interior and on the 2-post lift.</p>
+
+        <!-- Three vertical exterior shots -->
+        <div class="img-trio">
+          <div class="img-third">
+            <img src="../images/928-ext1.jpg" alt="Exterior shot 1"
+                 style="width:100%; height:100%; object-fit:cover; object-position:center center; display:block;">
+          </div>
+          <div class="img-third">
+            <img src="../images/928-ext2.jpg" alt="Exterior shot 2"
+                 style="width:100%; height:100%; object-fit:cover; object-position:center center; display:block;">
+          </div>
+          <div class="img-third">
+            <img src="../images/928-ext3.jpg" alt="Exterior shot 3"
+                 style="width:100%; height:100%; object-fit:cover; object-position:center center; display:block;">
+          </div>
+        </div>
+        <p class="img-caption">Exterior after cleaning.</p>
+      </div>
+
+    </div>
+
+    <!-- ── Sidebar ────────────────────────────────────── -->
+    <aside class="project-sidebar">
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">Tools & Methods</p>
+        <div class="tags-wrap">
+          <span class="tag">Fusion 360</span>
+          <span class="tag">FDM 3D Printing</span>
+          <span class="tag">Smoke Machine</span>
+          <span class="tag">Fuel Systems</span>
+          <span class="tag">Electrical Diagnostics</span>
+          <span class="tag">2-Post Lift</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">Context</p>
+        <p class="sidebar-text">
+          Personal project on a friend's father's car. The 928 had been sitting in barn storage for over a decade after developing a misfire. Diagnosis, cleaning, and mechanical repairs were done independently, with the car on a 2-post lift for fuel system and underbody access. The custom intake adapter for the smoke machine was modeled and printed specifically for this job.
+        </p>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- ── Prev / Next navigation ────────────────────────── -->
+  <div class="project-nav">
+    <a href="racing-sim.html"><span class="arrow">←</span> [Prev Project]</a>
+    <a href="kart-brackets.html">[Next Project] <span class="arrow">→</span></a>
+  </div>
+
+  <footer>
+    <span class="footer-copy">© 2026 John Price</span>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/johnprice7/" target="_blank">LinkedIn</a>
+      <a href="mailto:jcprice2024@gmail.com">Email</a>
+    </div>
+  </footer>
+
+</body>
+</html>
